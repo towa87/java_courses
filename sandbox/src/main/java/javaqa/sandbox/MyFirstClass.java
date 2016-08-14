@@ -1,4 +1,6 @@
-public class My{
+package javaqa.sandbox;
+
+public class MyFirstClass {
 
 public static void main (String[] args)
 
