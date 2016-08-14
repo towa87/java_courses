@@ -13,11 +13,11 @@ public class MyFirstClass {
 
   Square square = new Square(5);
 
-  System.out.println("square area with a side" + square.a + " = " + area(square.a));
+  System.out.println("square area with a side" + square.a + " = " + square.area());
 
  Rectangle rectangle = new Rectangle(5, 6);
 
-  System.out.println("area of rectangle with sides " + rectangle.a + " and " + rectangle.b + " = " + area(rectangle.a, rectangle.b));
+  System.out.println("area of rectangle with sides " + rectangle.a + " and " + rectangle.b + " = " + rectangle.area());
 
 }
   public static void hello (String somebody)
@@ -25,12 +25,6 @@ public class MyFirstClass {
     System.out.println("Hello, " + somebody + "!");
   }
 
-  public static double area (double l)
-  {
-    return l*l;
-  }
-  public static  double area(double a, double b)
-  {
-    return a * b;
-  }
+
+
 }
