@@ -11,12 +11,13 @@ public class MyFirstClass {
   hello("user");
   hello("Anton");
 
-  double l = 5;
-  System.out.println("square area with a side" + l + "=" + area(l));
+  Square square = new Square(5);
 
-  double a = 6;
-  double b = 7;
-  System.out.println("area of rectangle with sides " + a + " è " + b + " = " + area(a,b));
+  System.out.println("square area with a side" + square.a + " = " + area(square.a));
+
+ Rectangle rectangle = new Rectangle(5, 6);
+
+  System.out.println("area of rectangle with sides " + rectangle.a + " and " + rectangle.b + " = " + area(rectangle.a, rectangle.b));
 
 }
   public static void hello (String somebody)
