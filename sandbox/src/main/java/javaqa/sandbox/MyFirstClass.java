@@ -1,6 +1,4 @@
-package javaqa.sandbox;
-
-import com.sun.org.apache.xpath.internal.SourceTree;
+package javaqa.sandBox;
 
 public class MyFirstClass {
 

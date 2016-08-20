@@ -1,7 +1,7 @@
-package javaqa.sandbox;
+package javaqa.sandBox;
 
 /**
- * Created by Антон on 14.08.2016.
+ * Created by пїЅпїЅпїЅпїЅпїЅ on 14.08.2016.
  */
 public class Square {
 
