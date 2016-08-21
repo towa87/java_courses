@@ -17,4 +17,15 @@ public class NavigationHelper {
     //groupsHelper.returnToGroupPage();
     wd.findElement(By.linkText("groups")).click();
   }
+
+  public void goToListOfUsersPage() {
+    wd.findElement(By.linkText("next birthdays")).click();
+  }
+
+
+
+  public void goToCreationUserPage() {
+    wd.findElement(By.linkText("add new")).click();
+  }
+
 }
