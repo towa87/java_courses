@@ -9,7 +9,7 @@ import org.openqa.selenium.interactions.Actions;
  * Created by Антон on 21.08.2016.
  */
 public class GroupsHelper {
-  FirefoxDriver wd;
+  private FirefoxDriver wd;
 
   public GroupsHelper(FirefoxDriver wd) {
     this.wd = wd;

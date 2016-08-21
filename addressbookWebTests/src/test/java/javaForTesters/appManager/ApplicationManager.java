@@ -12,7 +12,10 @@ import java.util.concurrent.TimeUnit;
  */
 public class ApplicationManager {
   FirefoxDriver wd;
+
+  private NavigationHelper navigationHelper;
   private GroupsHelper groupsHelper;
+  private SessionHelper sessionHelper;
 
   public static boolean isAlertPresent(FirefoxDriver wd) {
     try {
@@ -28,27 +31,12 @@ public class ApplicationManager {
     wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     wd.get("http://localhost:8080/addressbook/birthdays.php");
     groupsHelper = new GroupsHelper(wd);
-    login("admin", "secret");
+    navigationHelper = new NavigationHelper(wd);
+    sessionHelper = new SessionHelper(wd);
+    sessionHelper.login("admin", "secret");
   }
 
-  public void login(String username, String password) {
-    wd.findElement(By.name("pass")).click();
-    wd.findElement(By.name("pass")).sendKeys("\\undefined");
-    wd.findElement(By.cssSelector("html")).click();
-    wd.findElement(By.name("user")).click();
-    wd.findElement(By.name("user")).click();
-    wd.findElement(By.name("user")).clear();
-    wd.findElement(By.name("user")).sendKeys(username);
-    wd.findElement(By.id("LoginForm")).click();
-    wd.findElement(By.name("pass")).click();
-    wd.findElement(By.name("pass")).clear();
-    wd.findElement(By.name("pass")).sendKeys(password);
-    wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
-  }
 
-  public void goToGroupPage() {
-    groupsHelper.returnToGroupPage();
-  }
 
   public void goToListOfUsersPage() {
       wd.findElement(By.linkText("next birthdays")).click();
@@ -141,5 +129,9 @@ public class ApplicationManager {
 
   public GroupsHelper getGroupsHelper() {
     return groupsHelper;
+  }
+
+  public NavigationHelper getNavigationHelper() {
+    return navigationHelper;
   }
 }
