@@ -7,13 +7,15 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 /**
  * Created by Антон on 21.08.2016.
  */
-public class UserHelper {
-  private FirefoxDriver wd;
+public class UserHelper extends HelperBase {
+
 
   public UserHelper(FirefoxDriver wd) {
-    this.wd = wd;
+    super(wd);
   }
   public void populationNewUserForm(AccountCreation accountCreation) {
+
+
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
     wd.findElement(By.name("firstname")).sendKeys(accountCreation.getName());
@@ -87,6 +89,6 @@ public class UserHelper {
 
   public void submitCreationNewUserRecord() {
     wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
-    // wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
+
   }
 }
