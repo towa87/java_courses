@@ -1,18 +1,18 @@
-package javaForTesters;
+package javaForTesters.appManager;
 
+import javaForTesters.model.AccountCreation;
+import javaForTesters.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Антон on 21.08.2016.
  */
-public class TestBase {
+public class ApplicationManager {
   FirefoxDriver wd;
 
   public static boolean isAlertPresent(FirefoxDriver wd) {
@@ -24,8 +24,7 @@ public class TestBase {
     }
   }
 
-  @BeforeMethod
-  public void setUp() throws Exception {
+  public void init() {
     wd = new FirefoxDriver();
     wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     wd.get("http://localhost:8080/addressbook/birthdays.php");
@@ -156,8 +155,7 @@ public class TestBase {
       wd.findElement(By.linkText("add new")).click();
   }
 
-  @AfterMethod
-  public void tearDown() {
+  public void stop() {
     wd.quit();
   }
 

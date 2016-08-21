@@ -1,4 +1,4 @@
-package javaForTesters;
+package javaForTesters.model;
 
 public class GroupData {
   private final String name;

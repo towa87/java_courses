@@ -1,4 +1,4 @@
-package javaForTesters;
+package javaForTesters.model;
 
 public class AccountCreation {
   private final String name;
