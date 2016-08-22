@@ -23,4 +23,8 @@ public class NavigationHelper extends HelperBase {
   public void goToCreationUserPage() {
     click(By.linkText("add new"));
   }
+
+  public void initGroupModification() {
+    click(By.name("edit"));
+  }
 }
