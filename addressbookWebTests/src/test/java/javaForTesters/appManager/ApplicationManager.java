@@ -16,7 +16,6 @@ public class ApplicationManager {
   private UserHelper userHelper;
 
 
-
   public void init() {
     wd = new FirefoxDriver();
     wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
@@ -27,9 +26,6 @@ public class ApplicationManager {
     userHelper = new UserHelper(wd);
     sessionHelper.login("admin", "secret");
   }
-
-
-
 
 
   public void stop() {

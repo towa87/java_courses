@@ -8,13 +8,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  */
 public class NavigationHelper extends HelperBase {
 
-
   public NavigationHelper(FirefoxDriver wd) {
     super(wd);
   }
 
   public void goToGroupPage() {
-    //groupsHelper.returnToGroupPage();
     click(By.linkText("groups"));
   }
 
@@ -22,9 +20,7 @@ public class NavigationHelper extends HelperBase {
     click(By.linkText("next birthdays"));
   }
 
-
   public void goToCreationUserPage() {
     click(By.linkText("add new"));
   }
-
 }

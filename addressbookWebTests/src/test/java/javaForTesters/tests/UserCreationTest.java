@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 
 public class UserCreationTest extends TestBase {
 
-
   @Test
   public void testUserCreation() {
 
@@ -14,6 +13,5 @@ public class UserCreationTest extends TestBase {
     app.getUserHelper().submitCreationNewUserRecord();
     app.getNavigationHelper().goToListOfUsersPage();
   }
-
 
 }

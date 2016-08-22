@@ -1,10 +1,7 @@
 package javaForTesters.tests;
 
-
 import javaForTesters.model.GroupData;
 import org.testng.annotations.Test;
-
-
 
 public class GroupCreationTest extends TestBase {
 
