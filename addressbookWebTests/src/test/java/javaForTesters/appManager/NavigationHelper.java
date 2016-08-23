@@ -27,4 +27,8 @@ public class NavigationHelper extends HelperBase {
   public void initGroupModification() {
     click(By.name("edit"));
   }
+
+  public void goToHomePage() {
+    click(By.linkText("home"));
+  }
 }

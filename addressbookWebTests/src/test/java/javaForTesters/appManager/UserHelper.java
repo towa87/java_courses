@@ -61,4 +61,17 @@ public class UserHelper extends HelperBase {
 
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
+
+  public void editUser() {
+    click(By.xpath("//table[@id='maintable']/tbody/tr[4]/td[8]/a/img"));
+  }
+
+  public void editUserButton() {
+    click(By.name("update"));
+    //wd.findElement(By.xpath("//div[@id='content']/form[1]/input[22]")).click();
+   // wd.findElement(By.xpath("//div/div[4]/form[1]/input[22]")).click();
+
+
+
+  }
 }
