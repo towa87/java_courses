@@ -37,19 +37,17 @@ public class UserHelper extends HelperBase {
     if (!wd.findElement(By.xpath("//div[@id='content']/form/select[2]//option[8]")).isSelected()) {
       click(By.xpath("//div[@id='content']/form/select[2]//option[8]"));
     }
-    click(By.name("theform"));
-    //wd.findElement(By.name("theform")).click();
+
     if (!wd.findElement(By.xpath("//div[@id='content']/form/select[3]//option[10]")).isSelected()) {
       click(By.xpath("//div[@id='content']/form/select[1]//option[7]"));
     }
     if (!wd.findElement(By.xpath("//div[@id='content']/form/select[4]//option[8]")).isSelected()) {
       click(By.xpath("//div[@id='content']/form/select[4]//option[8]"));
     }
-    click(By.xpath("//div[@id='content']//label[.='Group:']"));
-    click(By.xpath("//div[@id='content']//label[.='Anniversary:']"));
-    if (!wd.findElement(By.xpath("//div[@id='content']/form/select[5]//option[3]")).isSelected()) {
-      click(By.xpath("//div[@id='content']/form/select[5]//option[3]"));
-    }
+
+    //if (!wd.findElement(By.xpath("//div[@id='content']/form/select[5]//option[3]")).isSelected()) {
+      //click(By.xpath("//div[@id='content']/form/select[5]//option[3]"));
+    //}
 
   }
 
@@ -68,10 +66,15 @@ public class UserHelper extends HelperBase {
 
   public void editUserButton() {
     click(By.name("update"));
-    //wd.findElement(By.xpath("//div[@id='content']/form[1]/input[22]")).click();
-   // wd.findElement(By.xpath("//div/div[4]/form[1]/input[22]")).click();
+
 
 
 
   }
+
+  public void deleteUserButton() {
+    click(By.xpath("//div[@id='content']/form[2]/input[2]"));
+  }
+
+
 }
