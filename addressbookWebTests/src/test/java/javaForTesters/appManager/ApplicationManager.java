@@ -34,7 +34,7 @@ public class ApplicationManager {
     {wd = new ChromeDriver();}
     if (browser.equals(BrowserType.IE))
     {wd = new InternetExplorerDriver();}
-    wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+    wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     wd.get("http://localhost:8080/addressbook/birthdays.php");
     groupsHelper = new GroupsHelper(wd);
     navigationHelper = new NavigationHelper(wd);

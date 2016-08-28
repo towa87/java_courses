@@ -2,8 +2,10 @@ package javaForTesters.appManager;
 
 import javaForTesters.model.AccountCreation;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 /**
  * Created by Антон on 21.08.2016.
@@ -15,7 +17,7 @@ public class UserHelper extends HelperBase {
     super(wd);
   }
 
-  public void populationNewUserForm(AccountCreation accountCreation) {
+  public void populationNewUserForm(AccountCreation accountCreation, boolean creation) {
     type(By.name("firstname"), accountCreation.getName());
     type(By.name("lastname"), accountCreation.getLastname1());
     type(By.name("nickname"), accountCreation.getNick());
@@ -31,7 +33,12 @@ public class UserHelper extends HelperBase {
     type(By.name("fax"), accountCreation.getWorkPhone2());
     type(By.name("email"), accountCreation.getEmail());
     type(By.name("homepage"), accountCreation.getHomepage());
-
+    if (creation) {
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(accountCreation.getGroup());
+      }
+    else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
     if (!wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[7]")).isSelected()) {
       click(By.xpath("//div[@id='content']/form/select[1]//option[7]"));
     }
@@ -47,7 +54,7 @@ public class UserHelper extends HelperBase {
     }
 
     //if (!wd.findElement(By.xpath("//div[@id='content']/form/select[5]//option[3]")).isSelected()) {
-      //click(By.xpath("//div[@id='content']/form/select[5]//option[3]"));
+    //click(By.xpath("//div[@id='content']/form/select[5]//option[3]"));
     //}
 
   }
@@ -67,8 +74,6 @@ public class UserHelper extends HelperBase {
 
   public void editUserButton() {
     click(By.name("update"));
-
-
 
 
   }

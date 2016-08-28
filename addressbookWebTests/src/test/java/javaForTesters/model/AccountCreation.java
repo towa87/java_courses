@@ -17,8 +17,9 @@ public class AccountCreation {
   private final String homepage;
   private final String birthday;
   private final String ayear;
+  private String group;
 
-  public AccountCreation(String name, String lastname1, String nick, String title, String company, String telephoneHome, String telephoneHome2, String mobilePhone, String mobilePhone2, String workPhone, String workPhone2, String workPhone3, String email, String homepage, String birthday, String ayear) {
+  public AccountCreation(String name, String lastname1, String nick, String title, String company, String telephoneHome, String telephoneHome2, String mobilePhone, String mobilePhone2, String workPhone, String workPhone2, String workPhone3, String email, String homepage, String birthday, String ayear, String group) {
     this.name = name;
     this.lastname1 = lastname1;
     this.nick = nick;
@@ -35,6 +36,7 @@ public class AccountCreation {
     this.homepage = homepage;
     this.birthday = birthday;
     this.ayear = ayear;
+    this.group = group;
   }
 
   public String getName() {
@@ -99,5 +101,8 @@ public class AccountCreation {
 
   public String getAyear() {
     return ayear;
+  }
+  public String getGroup() {
+    return group;
   }
 }
