@@ -2,6 +2,7 @@ package javaForTesters.appManager;
 
 import javaForTesters.model.AccountCreation;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
@@ -10,7 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class UserHelper extends HelperBase {
 
 
-  public UserHelper(FirefoxDriver wd) {
+  public UserHelper(WebDriver wd) {
     super(wd);
   }
 

@@ -2,6 +2,7 @@ package javaForTesters.appManager;
 
 import javaForTesters.model.GroupData;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 
@@ -10,7 +11,7 @@ import org.openqa.selenium.interactions.Actions;
  */
 public class GroupsHelper extends HelperBase {
 
-  public GroupsHelper(FirefoxDriver wd) {
+  public GroupsHelper(WebDriver wd) {
     super(wd);
   }
 
