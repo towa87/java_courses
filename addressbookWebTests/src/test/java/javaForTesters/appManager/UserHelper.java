@@ -83,4 +83,12 @@ public class UserHelper extends HelperBase {
   }
 
 
+  public void createUser(AccountCreation accountCreation, boolean b) {
+  populationNewUserForm(accountCreation, b);
+    submitCreationNewUserRecord();
+
+  }
+
+  public boolean isThereUser() {
+   return isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[4]/td[8]/a/img"));  }
 }

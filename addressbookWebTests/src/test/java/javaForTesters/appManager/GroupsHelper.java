@@ -48,4 +48,15 @@ click(By.name("update"));
   public void navigateToGroupCreation() {
     click(By.linkText("group page"));
   }
+
+  public void createGroup(GroupData group) {
+    initGroupCreation();
+    populateFieldsOfGroupForm(group);
+    submitGroupCreation();
+  returnToGroupPage();
+  }
+
+  public boolean isThereGroup() {
+    return isElementPresent(By.name("selected[]"));
+  }
 }
