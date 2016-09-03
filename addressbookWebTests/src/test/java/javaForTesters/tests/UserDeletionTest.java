@@ -1,6 +1,7 @@
 package javaForTesters.tests;
 
 import javaForTesters.model.AccountCreation;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
@@ -12,6 +13,7 @@ public class UserDeletionTest extends TestBase {
   public void userDeletionTest() {
     app.getNavigationHelper().goToHomePage();
 
+    int before = app.getUserHelper().getUserCount();
     if (!app.getUserHelper().isThereUser()) {
       app.getNavigationHelper().goToCreationUserPage();
       app.getUserHelper().createUser(new AccountCreation("Ivan", "Smit", "ST123", "User", "Software", "+4704888822", "+4704888822", "+4704888821", "+4704888821", "+4704888821", "+4704888827", "+4704888829", "test@test.com", "localhost:8080/", "1990", "2000", "test3"), true);
@@ -19,6 +21,8 @@ public class UserDeletionTest extends TestBase {
     }
     app.getUserHelper().editUser();
     app.getUserHelper().deleteUserButton();
-    app.getNavigationHelper().goToListOfUsersPage();
+    app.getNavigationHelper().goToHomePage();
+    int after = app.getUserHelper().getUserCount();
+    Assert.assertEquals(before, after +1);
   }
 }

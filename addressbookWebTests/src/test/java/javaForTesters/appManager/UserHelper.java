@@ -91,4 +91,8 @@ public class UserHelper extends HelperBase {
 
   public boolean isThereUser() {
    return isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[4]/td[8]/a/img"));  }
+
+  public int getUserCount() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
 }
