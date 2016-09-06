@@ -69,8 +69,9 @@ public class UserHelper extends HelperBase {
   }
 
   public void editUser() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[4]/td[8]/a/img"));
-  }
+    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img") );
+
+    }
 
   public void editUserButton() {
     click(By.name("update"));

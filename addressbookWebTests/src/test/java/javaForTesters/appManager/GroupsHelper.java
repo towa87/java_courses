@@ -3,8 +3,11 @@ package javaForTesters.appManager;
 import javaForTesters.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Антон on 21.08.2016.
@@ -37,8 +40,9 @@ public class GroupsHelper extends HelperBase {
       new Actions(wd).doubleClick(wd.findElement(By.name("delete"))).build().perform();
   }
 
-  public void selectGroup() {
-    click(By.name("selected[]"));
+  public void selectGroup(int element) {
+    wd.findElements(By.name("selected[]")).get(element).click();
+
   }
 
   public void submitGroupModification() {
@@ -53,7 +57,7 @@ click(By.name("update"));
     initGroupCreation();
     populateFieldsOfGroupForm(group);
     submitGroupCreation();
-  returnToGroupPage();
+    returnToGroupPage();
   }
 
   public boolean isThereGroup() {
@@ -62,5 +66,18 @@ click(By.name("update"));
 
   public int getGroupCount() {
   return wd.findElements(By.name("selected[]")).size();
+  }
+
+  public List<GroupData> getGroupList() {
+    List<GroupData> groups = new ArrayList<GroupData>();
+    List<WebElement> elemets = wd.findElements(By.cssSelector("span.group"));
+    for (WebElement element: elemets)
+    {
+      String name = element.getText();
+      String id = element.findElement(By.tagName("input")).getAttribute("value");
+      GroupData group = new GroupData(id, name, null, null);
+      groups.add(group);
+    }
+  return groups;
   }
 }
