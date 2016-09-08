@@ -74,7 +74,7 @@ click(By.name("update"));
     for (WebElement element: elemets)
     {
       String name = element.getText();
-      String id = element.findElement(By.tagName("input")).getAttribute("value");
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       GroupData group = new GroupData(id, name, null, null);
       groups.add(group);
     }
