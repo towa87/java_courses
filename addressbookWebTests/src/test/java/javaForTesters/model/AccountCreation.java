@@ -1,6 +1,7 @@
 package javaForTesters.model;
 
 public class AccountCreation {
+  private int id;
   private final String name;
   private final String lastname1;
   private final String nick;
@@ -19,7 +20,8 @@ public class AccountCreation {
   private final String ayear;
   private String group;
 
-  public AccountCreation(String name, String lastname1, String nick, String title, String company, String telephoneHome, String telephoneHome2, String mobilePhone, String mobilePhone2, String workPhone, String workPhone2, String workPhone3, String email, String homepage, String birthday, String ayear, String group) {
+  public AccountCreation( String name, String lastname1, String nick, String title, String company, String telephoneHome, String telephoneHome2, String mobilePhone, String mobilePhone2, String workPhone, String workPhone2, String workPhone3, String email, String homepage, String birthday, String ayear, String group) {
+    id = 0;
     this.name = name;
     this.lastname1 = lastname1;
     this.nick = nick;
@@ -39,6 +41,26 @@ public class AccountCreation {
     this.group = group;
   }
 
+  public AccountCreation( int id, String name, String lastname1, String nick, String title, String company, String telephoneHome, String telephoneHome2, String mobilePhone, String mobilePhone2, String workPhone, String workPhone2, String workPhone3, String email, String homepage, String birthday, String ayear, String group) {
+    this.id = id;
+    this.name = name;
+    this.lastname1 = lastname1;
+    this.nick = nick;
+    this.title = title;
+    this.company = company;
+    this.telephoneHome = telephoneHome;
+    this.telephoneHome2 = telephoneHome2;
+    this.mobilePhone = mobilePhone;
+    this.mobilePhone2 = mobilePhone2;
+    this.workPhone = workPhone;
+    this.workPhone2 = workPhone2;
+    this.workPhone3 = workPhone3;
+    this.email = email;
+    this.homepage = homepage;
+    this.birthday = birthday;
+    this.ayear = ayear;
+    this.group = group;
+  }
   public String getName() {
     return name;
   }

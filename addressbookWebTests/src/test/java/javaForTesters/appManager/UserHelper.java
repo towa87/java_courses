@@ -1,11 +1,16 @@
 package javaForTesters.appManager;
 
 import javaForTesters.model.AccountCreation;
+import javaForTesters.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Антон on 21.08.2016.
@@ -69,7 +74,8 @@ public class UserHelper extends HelperBase {
   }
 
   public void editUser() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img") );
+  //  wd.findElements(By.tagName("a")).get(id).click();
+   click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img") );
 
     }
 
@@ -96,4 +102,35 @@ public class UserHelper extends HelperBase {
   public int getUserCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
+
+  public List<AccountCreation> getUserList() {
+
+    List<AccountCreation> users = new ArrayList<AccountCreation>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for (WebElement element: elements)
+    {
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+
+      String lastname = cells.get(1).getText();
+
+      String firstname = cells.get(2).getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      users.add(new AccountCreation(id, firstname, lastname, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null));
+    }
+    return users;
+  }
+
+ /*
+  <input id="69" name="selected[]" value="69" title="Select (Filip Sidorov)" alt="Select (Filip Sidorov)" accept="test@test.com" type="checkbox">
+
+  List<GroupData> groups = new ArrayList<GroupData>();
+    List<WebElement> elemets = wd.findElements(By.cssSelector("span.group"));
+    for (WebElement element: elemets)
+    {
+      String name = element.getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      GroupData group = new GroupData(id, name, null, null);
+      groups.add(group);
+    }
+*/
 }
