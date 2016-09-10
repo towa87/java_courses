@@ -73,9 +73,16 @@ public class UserHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
-  public void editUser() {
-  //  wd.findElements(By.tagName("a")).get(id).click();
-   click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img") );
+  public void editUser(int id ) {
+
+   //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img") );
+    int collumnForEditbutton = 7;
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    List<WebElement> row = elements.get(id).findElements(By.tagName("td"));
+    row.get(collumnForEditbutton).findElement(By.tagName("a")).click();
+
+
+
 
     }
 
@@ -97,7 +104,7 @@ public class UserHelper extends HelperBase {
   }
 
   public boolean isThereUser() {
-   return isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[4]/td[8]/a/img"));  }
+   return isElementPresent(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img"));  }
 
   public int getUserCount() {
     return wd.findElements(By.name("selected[]")).size();
@@ -120,17 +127,5 @@ public class UserHelper extends HelperBase {
     return users;
   }
 
- /*
-  <input id="69" name="selected[]" value="69" title="Select (Filip Sidorov)" alt="Select (Filip Sidorov)" accept="test@test.com" type="checkbox">
 
-  List<GroupData> groups = new ArrayList<GroupData>();
-    List<WebElement> elemets = wd.findElements(By.cssSelector("span.group"));
-    for (WebElement element: elemets)
-    {
-      String name = element.getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      GroupData group = new GroupData(id, name, null, null);
-      groups.add(group);
-    }
-*/
 }

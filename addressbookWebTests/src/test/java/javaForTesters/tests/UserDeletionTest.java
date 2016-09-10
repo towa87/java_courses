@@ -23,12 +23,12 @@ public class UserDeletionTest extends TestBase {
     }
 
     List<AccountCreation> before = app.getUserHelper().getUserList();
-    app.getUserHelper().editUser();
+    app.getUserHelper().editUser(before.size()-1);
     app.getUserHelper().deleteUserButton();
     app.getNavigationHelper().goToHomePage();
     List<AccountCreation> after = app.getUserHelper().getUserList();
     Assert.assertEquals(before.size()-1, after.size());
-    before.remove(before.size() -1);
+    before.remove(before.size()-1);
     Assert.assertEquals(before, after);
 
   }
