@@ -5,7 +5,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -28,7 +27,8 @@ public class GroupModificationTest extends TestBase {
     app.getGroupsHelper().submitGroupModification();
     app.getGroupsHelper().navigateToGroupCreation();
     List<GroupData> after = app.getGroupsHelper().getGroupList();
-before.remove(0);
+    Assert.assertEquals(before.size(), after.size());
+    before.remove(0);
     before.add(group);
 
 

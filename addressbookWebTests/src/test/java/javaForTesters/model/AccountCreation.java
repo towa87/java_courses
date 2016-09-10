@@ -20,8 +20,11 @@ public class AccountCreation {
   private final String ayear;
   private String group;
 
-  public AccountCreation( String name, String lastname1, String nick, String title, String company, String telephoneHome, String telephoneHome2, String mobilePhone, String mobilePhone2, String workPhone, String workPhone2, String workPhone3, String email, String homepage, String birthday, String ayear, String group) {
-    id = 0;
+
+
+  public AccountCreation(String name, String lastname1, String nick, String title, String company, String telephoneHome, String telephoneHome2, String mobilePhone, String mobilePhone2, String workPhone, String workPhone2, String workPhone3, String email, String homepage, String birthday, String ayear, String group) {
+    id = Integer.MAX_VALUE;
+
     this.name = name;
     this.lastname1 = lastname1;
     this.nick = nick;
@@ -126,5 +129,39 @@ public class AccountCreation {
   }
   public String getGroup() {
     return group;
+  }
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) { this.id = id; }
+
+  @Override
+  public String toString() {
+    return "AccountCreation{" +
+            "id=" + id +
+
+            ", name='" + name + '\'' +
+            ", lastname1='" + lastname1 + '\'' +
+            '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    AccountCreation that = (AccountCreation) o;
+
+    if (name != null ? !name.equals(that.name) : that.name != null) return false;
+    return lastname1 != null ? lastname1.equals(that.lastname1) : that.lastname1 == null;
+
+  }
+
+  @Override
+  public int hashCode() {
+    int result = name != null ? name.hashCode() : 0;
+    result = 31 * result + (lastname1 != null ? lastname1.hashCode() : 0);
+    return result;
   }
 }

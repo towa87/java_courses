@@ -1,11 +1,10 @@
 package javaForTesters.tests;
 
 import javaForTesters.model.AccountCreation;
-import javaForTesters.model.GroupData;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -23,10 +22,21 @@ public class UserModificationTest extends TestBase {
     }
     List<AccountCreation> before = app.getUserHelper().getUserList();
     app.getUserHelper().editUser(0);
-    app.getUserHelper().populationNewUserForm(new AccountCreation("Filip", "Sidorov", "ST123", "User", "Software", "+4704888822", "+4704888822", "+4704888821", "+4704888821", "+4704888821", "+4704888827", "+4704888829", "test@test.com", "localhost:8080/", "1990", "2000", null), false);
+    AccountCreation user = new AccountCreation(before.get(0).getId(), "Filip", "Sidorov", "ST123", "User", "Software", "+4704888822", "+4704888822", "+4704888821", "+4704888821", "+4704888821", "+4704888827", "+4704888829", "test@test.com", "localhost:8080/", "1990", "2000", null);
+    app.getUserHelper().populationNewUserForm(user, false);
     app.getUserHelper().editUserButton();
     app.getNavigationHelper().goToHomePage();
     List<AccountCreation> after = app.getUserHelper().getUserList();
     Assert.assertEquals(before.size(), after.size());
+    before.remove(0);
+    before.add(user);
+
+
+    Comparator<? super AccountCreation> byId = (o1, o2) -> Integer.compare(o1.getId(), o2.getId());
+    before.sort(byId);
+    after.sort(byId);
+    Assert.assertEquals(after, before);
+
+
   }
 }

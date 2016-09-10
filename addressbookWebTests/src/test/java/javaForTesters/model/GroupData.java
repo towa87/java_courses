@@ -1,17 +1,7 @@
 package javaForTesters.model;
 
 public class GroupData {
-  public void setId(int id) {
-    this.id = id;
-  }
 
-  @Override
-  public String toString() {
-    return "GroupData{" +
-            "id='" + id + '\'' +
-            ", name='" + name + '\'' +
-            '}';
-  }
 
   private int id;
   private final String name;
@@ -61,5 +51,15 @@ public class GroupData {
 
   public int getId() {
     return id;
+  }
+
+  public void setId(int id) { this.id = id; }
+
+  @Override
+  public String toString() {
+    return "GroupData{" +
+            "id='" + id + '\'' +
+            ", name='" + name + '\'' +
+            '}';
   }
 }
