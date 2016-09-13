@@ -1,9 +1,7 @@
 package javaForTesters.appManager;
 
 import javaForTesters.model.AccountCreation;
-import javaForTesters.model.GroupData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -122,10 +120,25 @@ public class UserHelper extends HelperBase {
 
       String firstname = cells.get(2).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      users.add(new AccountCreation(id, firstname, lastname, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null));
+      users.add(new AccountCreation().withId(id).withName("Ivan")
+              .withLastname1("Smit").withNick("ST123").withNick("User")
+              .withCompany("Software").withTelephoneHome("+4704888822")
+              .withTelephoneHome2("+4704888822").withMobilePhone("+4704888821")
+              .withMobilePhone2("+4704888821").withWorkPhone("+4704888821").withWorkPhone2("+4704888827")
+              .withWorkPhone3("+4704888829").withEmail("test@test.com").withHomepage("localhost:8080/")
+              .withAyear("1990").withBirthday("2000"));
     }
     return users;
   }
+  public void modify (int index, AccountCreation user) {
+   editUser(index);
+    populationNewUserForm(user, false);
+    editUserButton();
 
+  }
+  public void delete(int index) {
+   editUser(index);
+    deleteUserButton();
+  }
 
 }

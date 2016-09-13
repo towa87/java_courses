@@ -37,7 +37,7 @@ public class GroupsHelper extends HelperBase {
   }
 
   public void deleteSelectedGroup() {
-      new Actions(wd).doubleClick(wd.findElement(By.name("delete"))).build().perform();
+    new Actions(wd).doubleClick(wd.findElement(By.name("delete"))).build().perform();
   }
 
   public void selectGroup(int element) {
@@ -46,14 +46,14 @@ public class GroupsHelper extends HelperBase {
   }
 
   public void submitGroupModification() {
-click(By.name("update"));
+    click(By.name("update"));
   }
 
   public void navigateToGroupCreation() {
     click(By.linkText("group page"));
   }
 
-  public void createGroup(GroupData group) {
+  public void create(GroupData group) {
     initGroupCreation();
     populateFieldsOfGroupForm(group);
     submitGroupCreation();
@@ -65,21 +65,45 @@ click(By.name("update"));
   }
 
   public int getGroupCount() {
-  return wd.findElements(By.name("selected[]")).size();
+    return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<GroupData> getGroupList() {
+  public List<GroupData> list() {
     List<GroupData> groups = new ArrayList<GroupData>();
     List<WebElement> elemets = wd.findElements(By.cssSelector("span.group"));
-    for (WebElement element: elemets)
-    {
+    for (WebElement element : elemets) {
       String name = element.getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      GroupData group = new GroupData(id, name, null, null);
-      groups.add(group);
+     // GroupData group = new GroupData().withId(id).withName(name);
+      groups.add(new GroupData().withId(id).withName(name));
     }
-  return groups;
+    return groups;
   }
 
+  public void initGroupModification() {
+    click(By.name("edit"));
+  }
 
+  public void modify(int index, GroupData group) {
+    selectGroup(index);
+    initGroupModification();
+    populateFieldsOfGroupForm(group);
+    submitGroupModification();
+    navigateToGroupCreation();
+  }
+  public void groupPage() {
+    if (isElementPresent(By.tagName("h1"))
+            && wd.findElement(By.tagName("h1")).getText().equals("Groups")
+            && isElementPresent(By.name("New"))) {
+      return;
+    }
+    click(By.linkText("groups"));
+
+  }
+
+  public void delete(int index) {
+   selectGroup(index);
+   deleteSelectedGroup();
+   groupPage();
+  }
 }
