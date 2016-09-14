@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Антон on 22.08.2016.
@@ -15,7 +16,7 @@ public class GroupModificationTest extends TestBase {
   @BeforeMethod
 public void ensurePreconditions(){
     app.groups().groupPage();
-    if (app.groups().list().size() == 0)
+    if (app.groups().all().size() == 0)
     {
 
       app.groups().create(new GroupData().withName("test3"));
@@ -25,21 +26,20 @@ public void ensurePreconditions(){
   @Test
   public void testModifiction() {
 
-    List<GroupData> before = app.groups().list();
-    int index = before.size() - 1;
-    GroupData group = new GroupData().withId(before.get(index).getId())
+    Set<GroupData> before = app.groups().all();
+
+    GroupData modifiedGroup = before.iterator().next();
+    GroupData group = new GroupData().withId(modifiedGroup.getId())
             .withName("testmodified3").setFooter("test5").withHeader("test6");
 
-    app.groups().modify(index, group);
-    List<GroupData> after = app.groups().list();
+    app.groups().modify(group);
+    Set<GroupData> after = app.groups().all();
     Assert.assertEquals(before.size(), after.size());
-    before.remove(index);
+    before.remove(modifiedGroup);
     before.add(group);
 
 
-    Comparator<? super GroupData> byId = (o1, o2) -> Integer.compare(o1.getId(), o2.getId());
-    before.sort(byId);
-    after.sort(byId);
+
     Assert.assertEquals(after, before);
   }
 
