@@ -22,7 +22,29 @@ public class AccountCreation {
     this.ayear = ayear; return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    AccountCreation that = (AccountCreation) o;
+
+    if (id != that.id) return false;
+    if (name != null ? !name.equals(that.name) : that.name != null) return false;
+    return lastname1 != null ? lastname1.equals(that.lastname1) : that.lastname1 == null;
+
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
+    result = 31 * result + (lastname1 != null ? lastname1.hashCode() : 0);
+    return result;
+  }
+
   public AccountCreation withGroup(String group) {
+
     this.group = group; return this;
   }
 
@@ -177,22 +199,4 @@ public class AccountCreation {
             '}';
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    AccountCreation that = (AccountCreation) o;
-
-    if (name != null ? !name.equals(that.name) : that.name != null) return false;
-    return lastname1 != null ? lastname1.equals(that.lastname1) : that.lastname1 == null;
-
-  }
-
-  @Override
-  public int hashCode() {
-    int result = name != null ? name.hashCode() : 0;
-    result = 31 * result + (lastname1 != null ? lastname1.hashCode() : 0);
-    return result;
-  }
 }

@@ -8,7 +8,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Антон on 21.08.2016.
@@ -74,11 +76,17 @@ public class UserHelper extends HelperBase {
   public void editUser(int id ) {
 
    //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img") );
-    int collumnForEditbutton = 7;
-    List<WebElement> elements = wd.findElements(By.name("entry"));
-    List<WebElement> row = elements.get(id).findElements(By.tagName("td"));
-    row.get(collumnForEditbutton).findElement(By.tagName("a")).click();
+     int collumnForEditbutton = 7;
 
+   // wd.findElement(By.cssSelector("input[value='" + id + "']"))
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for(int i = 0; i < elements.size(); i++) {
+      List<WebElement> row = elements.get(i).findElements(By.tagName("td"));
+     int value = Integer.parseInt(row.get(0).findElement(By.tagName("input")).getAttribute("value"));
+        if (value == id)
+        {row.get(collumnForEditbutton).findElement(By.tagName("a")).click();
+        return;}
+    }
 
 
 
@@ -136,9 +144,42 @@ public class UserHelper extends HelperBase {
     editUserButton();
 
   }
+  public void modify (AccountCreation user) {
+    editUser(user.getId());
+    populationNewUserForm(user, false);
+    editUserButton();
+
+  }
   public void delete(int index) {
    editUser(index);
     deleteUserButton();
   }
 
+
+  public Set<AccountCreation> userList() {
+
+    Set<AccountCreation> users = new HashSet<>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for (WebElement element: elements)
+    {
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+
+      String lastname = cells.get(1).getText();
+
+      String firstname = cells.get(2).getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      users.add(new AccountCreation().withId(id).withName("Ivan")
+              .withLastname1("Smit").withNick("ST123").withNick("User")
+              .withCompany("Software").withTelephoneHome("+4704888822")
+              .withTelephoneHome2("+4704888822").withMobilePhone("+4704888821")
+              .withMobilePhone2("+4704888821").withWorkPhone("+4704888821").withWorkPhone2("+4704888827")
+              .withWorkPhone3("+4704888829").withEmail("test@test.com").withHomepage("localhost:8080/")
+              .withAyear("1990").withBirthday("2000"));
+    }
+    return users;
+  }
+
+  public void delete(AccountCreation user) {
+  editUser(user.getId());
+  deleteUserButton();  }
 }

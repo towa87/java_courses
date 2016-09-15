@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Антон on 23.08.2016.
@@ -34,24 +35,26 @@ public class UserModificationTest extends TestBase {
 
   @Test
   public void testModificationUser() {
-    List<AccountCreation> before = app.user().getUserList();
+    Set<AccountCreation> before = app.user().userList();
+
+    AccountCreation modifiedUser = before.iterator().next();
     int index = before.size() - 1;
-    AccountCreation user = new AccountCreation().withId(before.get(index).getId()).withName("Ivan")
+    AccountCreation user = new AccountCreation().withId(modifiedUser.getId()).withName("Ivan")
             .withLastname1("Smit").withNick("ST123").withNick("User")
             .withCompany("Software").withTelephoneHome("+4704888822")
             .withTelephoneHome2("+4704888822").withMobilePhone("+4704888821")
             .withMobilePhone2("+4704888821").withWorkPhone("+4704888821").withWorkPhone2("+4704888827")
             .withWorkPhone3("+4704888829").withEmail("test@test.com").withHomepage("localhost:8080/")
             .withAyear("1990").withBirthday("2000");
-    app.user().modify(index, user);
+    app.user().modify(user);
     app.goTo().homePage();
-    List<AccountCreation> after = app.user().getUserList();
+    Set<AccountCreation> after = app.user().userList();
     Assert.assertEquals(before.size(), after.size());
-    before.remove(index);
+    before.remove(modifiedUser);
     before.add(user);
-    Comparator<? super AccountCreation> byId = (o1, o2) -> Integer.compare(o1.getId(), o2.getId());
-    before.sort(byId);
-    after.sort(byId);
+    //Comparator<? super AccountCreation> byId = (o1, o2) -> Integer.compare(o1.getId(), o2.getId());
+  //  before.sort(byId);
+  //  after.sort(byId);
     Assert.assertEquals(after, before);
 
 

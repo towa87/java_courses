@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class UserCreationTest extends TestBase {
 
@@ -13,7 +14,7 @@ public class UserCreationTest extends TestBase {
 
   public void testUserCreation() {
     app.goTo().homePage();
-    List<AccountCreation> before = app.user().getUserList();
+    Set<AccountCreation> before = app.user().userList();
     app.goTo().creationUserPage();
     AccountCreation account = new AccountCreation().withName("Ivan")
             .withLastname1("Smit").withNick("ST123").withNick("User")
@@ -24,14 +25,15 @@ public class UserCreationTest extends TestBase {
             .withAyear("1990").withBirthday("2000").withGroup("test3");
     app.user().createUser(account, true);
     app.goTo().homePage();
-    List<AccountCreation> after = app.user().getUserList();
+    Set<AccountCreation> after = app.user().userList();
     Assert.assertEquals(after.size(), before.size() + 1);
+account.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt());
+   /* account.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
 
-   // account.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
-    before.add(account);
    Comparator<? super AccountCreation> byId = (a1, a2) -> Integer.compare(a1.getId(), a2.getId());
     before.sort(byId);
-    after.sort(byId);
+    after.sort(byId);*/
+    before.add(account);
     Assert.assertEquals(after, before);
 
   }

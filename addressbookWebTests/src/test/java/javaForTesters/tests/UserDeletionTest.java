@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Антон on 23.08.2016.
@@ -29,13 +30,16 @@ public class UserDeletionTest extends TestBase {
   }
   @Test
   public void userDeletionTest() {
-     List<AccountCreation> before = app.user().getUserList();
+     Set<AccountCreation> before = app.user().userList();
+    AccountCreation deletedUser = before.iterator().next();
     int index = before.size() - 1;
-    app.user().delete(index);
+    app.user().delete(deletedUser);
     app.goTo().homePage();
-    List<AccountCreation> after = app.user().getUserList();
+    Set<AccountCreation> after = app.user().userList();
     Assert.assertEquals(before.size()-1, after.size());
-    before.remove(index);
+
+
+    before.remove(deletedUser);
     Assert.assertEquals(before, after);
 
   }
