@@ -4,8 +4,6 @@ import javaForTesters.model.AccountCreation;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.Comparator;
-import java.util.List;
 import java.util.Set;
 
 public class UserCreationTest extends TestBase {
@@ -27,7 +25,7 @@ public class UserCreationTest extends TestBase {
     app.goTo().homePage();
     Set<AccountCreation> after = app.user().userList();
     Assert.assertEquals(after.size(), before.size() + 1);
-account.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt());
+    account.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt());
    /* account.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
 
    Comparator<? super AccountCreation> byId = (a1, a2) -> Integer.compare(a1.getId(), a2.getId());

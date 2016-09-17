@@ -32,7 +32,7 @@ public class UserDeletionTest extends TestBase {
   public void userDeletionTest() {
      Set<AccountCreation> before = app.user().userList();
     AccountCreation deletedUser = before.iterator().next();
-    int index = before.size() - 1;
+
     app.user().delete(deletedUser);
     app.goTo().homePage();
     Set<AccountCreation> after = app.user().userList();

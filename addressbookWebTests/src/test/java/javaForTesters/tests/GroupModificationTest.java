@@ -1,13 +1,16 @@
 package javaForTesters.tests;
 
 import javaForTesters.model.GroupData;
+import javaForTesters.model.Groups;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Comparator;
-import java.util.List;
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.*;
 
 /**
  * Created by Антон on 22.08.2016.
@@ -26,21 +29,17 @@ public void ensurePreconditions(){
   @Test
   public void testModifiction() {
 
-    Set<GroupData> before = app.groups().all();
+    Groups before = app.groups().all();
 
     GroupData modifiedGroup = before.iterator().next();
     GroupData group = new GroupData().withId(modifiedGroup.getId())
             .withName("testmodified3").setFooter("test5").withHeader("test6");
 
     app.groups().modify(group);
-    Set<GroupData> after = app.groups().all();
+    Groups after = app.groups().all();
     Assert.assertEquals(before.size(), after.size());
-    before.remove(modifiedGroup);
-    before.add(group);
+       assertThat(after,equalTo(before.without(modifiedGroup).withAdded(group)));
 
-
-
-    Assert.assertEquals(after, before);
   }
 
 

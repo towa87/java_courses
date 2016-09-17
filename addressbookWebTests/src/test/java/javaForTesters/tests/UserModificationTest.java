@@ -38,7 +38,7 @@ public class UserModificationTest extends TestBase {
     Set<AccountCreation> before = app.user().userList();
 
     AccountCreation modifiedUser = before.iterator().next();
-    int index = before.size() - 1;
+
     AccountCreation user = new AccountCreation().withId(modifiedUser.getId()).withName("Ivan")
             .withLastname1("Smit").withNick("ST123").withNick("User")
             .withCompany("Software").withTelephoneHome("+4704888822")
