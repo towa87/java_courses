@@ -60,7 +60,9 @@ public class GroupsHelper extends HelperBase {
     groupCache = null;
     returnToGroupPage();
   }
-
+public int count(){
+  return wd.findElements(By.name("selected[]")).size();
+}
 
 
 

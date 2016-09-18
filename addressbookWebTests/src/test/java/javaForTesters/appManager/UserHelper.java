@@ -154,4 +154,8 @@ if (accountsCache != null)
   editUser(user.getId());
     accountsCache = null;
   deleteUserButton();  }
+
+  public int count(){
+    return wd.findElements(By.name("selected[]")).size();
+  }
 }

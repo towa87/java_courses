@@ -32,9 +32,9 @@ public void ensurePreconditions(){
             .withName("testmodified3").setFooter("test5").withHeader("test6");
 
     app.groups().modify(group);
-    Groups after = app.groups().all();
-    assertThat(after.size(),equalTo(before.size()));
+    assertThat(app.groups().count(),equalTo(before.size()));
 
+    Groups after = app.groups().all();
        assertThat(after,equalTo(before.without(modifiedGroup).withAdded(group)));
 
   }
