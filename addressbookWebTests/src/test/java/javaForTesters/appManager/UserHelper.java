@@ -8,10 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Антон on 21.08.2016.
@@ -107,59 +104,32 @@ public class UserHelper extends HelperBase {
   public void createUser(AccountCreation accountCreation, boolean b) {
   populationNewUserForm(accountCreation, b);
     submitCreationNewUserRecord();
+    accountsCache = null;
 
   }
 
   public boolean isThereUser() {
    return isElementPresent(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img"));  }
 
-  public int getUserCount() {
-    return wd.findElements(By.name("selected[]")).size();
-  }
 
-  public List<AccountCreation> getUserList() {
 
-    List<AccountCreation> users = new ArrayList<AccountCreation>();
-    List<WebElement> elements = wd.findElements(By.name("entry"));
-    for (WebElement element: elements)
-    {
-      List<WebElement> cells = element.findElements(By.tagName("td"));
 
-      String lastname = cells.get(1).getText();
-
-      String firstname = cells.get(2).getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      users.add(new AccountCreation().withId(id).withName("Ivan")
-              .withLastname1("Smit").withNick("ST123").withNick("User")
-              .withCompany("Software").withTelephoneHome("+4704888822")
-              .withTelephoneHome2("+4704888822").withMobilePhone("+4704888821")
-              .withMobilePhone2("+4704888821").withWorkPhone("+4704888821").withWorkPhone2("+4704888827")
-              .withWorkPhone3("+4704888829").withEmail("test@test.com").withHomepage("localhost:8080/")
-              .withAyear("1990").withBirthday("2000"));
-    }
-    return users;
-  }
-  public void modify (int index, AccountCreation user) {
-   editUser(index);
-    populationNewUserForm(user, false);
-    editUserButton();
-
-  }
   public void modify (AccountCreation user) {
     editUser(user.getId());
     populationNewUserForm(user, false);
+
     editUserButton();
-
-  }
-  public void delete(int index) {
-   editUser(index);
-    deleteUserButton();
+    accountsCache = null;
   }
 
 
+private Accounts accountsCache = null;
   public Accounts userList() {
-
-    Accounts users = new Accounts();
+if (accountsCache != null)
+{
+  return new Accounts(accountsCache);
+}
+    accountsCache = new Accounts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element: elements)
     {
@@ -169,7 +139,7 @@ public class UserHelper extends HelperBase {
 
       String firstname = cells.get(2).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      users.add(new AccountCreation().withId(id).withName("Ivan")
+      accountsCache.add(new AccountCreation().withId(id).withName("Ivan")
               .withLastname1("Smit").withNick("ST123").withNick("User")
               .withCompany("Software").withTelephoneHome("+4704888822")
               .withTelephoneHome2("+4704888822").withMobilePhone("+4704888821")
@@ -177,10 +147,11 @@ public class UserHelper extends HelperBase {
               .withWorkPhone3("+4704888829").withEmail("test@test.com").withHomepage("localhost:8080/")
               .withAyear("1990").withBirthday("2000"));
     }
-    return users;
+    return new Accounts(accountsCache);
   }
 
   public void delete(AccountCreation user) {
   editUser(user.getId());
+    accountsCache = null;
   deleteUserButton();  }
 }

@@ -7,10 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Антон on 21.08.2016.
@@ -43,10 +40,7 @@ public class GroupsHelper extends HelperBase {
     new Actions(wd).doubleClick(wd.findElement(By.name("delete"))).build().perform();
   }
 
-  public void selectGroup(int element) {
-    wd.findElements(By.name("selected[]")).get(element).click();
 
-  }
   public void selectGroupById(int id) {
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
 
@@ -63,38 +57,27 @@ public class GroupsHelper extends HelperBase {
     initGroupCreation();
     populateFieldsOfGroupForm(group);
     submitGroupCreation();
+    groupCache = null;
     returnToGroupPage();
   }
 
-  public boolean isThereGroup() {
-    return isElementPresent(By.name("selected[]"));
-  }
 
-  public int getGroupCount() {
-    return wd.findElements(By.name("selected[]")).size();
-  }
 
-  public List<GroupData> list() {
-    List<GroupData> groups = new ArrayList<GroupData>();
-    List<WebElement> elemets = wd.findElements(By.cssSelector("span.group"));
-    for (WebElement element : elemets) {
-      String name = element.getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-     // GroupData group = new GroupData().withId(id).withName(name);
-      groups.add(new GroupData().withId(id).withName(name));
-    }
-    return groups;
-  }
+
+  private Groups groupCache = null;
   public Groups all() {
-    Groups groups = new Groups();
+    if (groupCache != null){
+      return new Groups(groupCache);
+    }
+    groupCache = new Groups();
     List<WebElement> elemets = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element : elemets) {
       String name = element.getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       // GroupData group = new GroupData().withId(id).withName(name);
-      groups.add(new GroupData().withId(id).withName(name));
+      groupCache.add(new GroupData().withId(id).withName(name));
     }
-    return groups;
+    return new Groups(groupCache);
   }
   public void initGroupModification() {
     click(By.name("edit"));
@@ -105,6 +88,7 @@ public class GroupsHelper extends HelperBase {
     initGroupModification();
     populateFieldsOfGroupForm(group);
     submitGroupModification();
+    groupCache = null;
     navigateToGroupCreation();
   }
   public void groupPage() {
@@ -117,15 +101,12 @@ public class GroupsHelper extends HelperBase {
 
   }
 
-  public void delete(int index) {
-   selectGroup(index);
-   deleteSelectedGroup();
-   groupPage();
-  }
+
 
   public void delete(GroupData group) {
     selectGroupById(group.getId());
     deleteSelectedGroup();
+    groupCache = null;
     groupPage();
   }
 }
