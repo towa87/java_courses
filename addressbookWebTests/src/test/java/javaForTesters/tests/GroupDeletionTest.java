@@ -3,13 +3,11 @@ package javaForTesters.tests;
 import javaForTesters.model.GroupData;
 import javaForTesters.model.Groups;
 import org.hamcrest.MatcherAssert;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Set;
-
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupDeletionTest extends TestBase {
 
@@ -28,7 +26,8 @@ public class GroupDeletionTest extends TestBase {
         app.groups().delete(deletedGroup);
     Groups after = app.groups().all();
 
-    Assert.assertEquals(after.size(), before.size() - 1);
+
+    assertThat(after.size(),equalTo(before.size() - 1));
      MatcherAssert.assertThat(after, equalTo(before.without(deletedGroup)));
 
   }

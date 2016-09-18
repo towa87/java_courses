@@ -1,13 +1,12 @@
 package javaForTesters.tests;
 
 import javaForTesters.model.AccountCreation;
-import org.testng.Assert;
+import javaForTesters.model.Accounts;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Created by Антон on 23.08.2016.
@@ -35,7 +34,7 @@ public class UserModificationTest extends TestBase {
 
   @Test
   public void testModificationUser() {
-    Set<AccountCreation> before = app.user().userList();
+    Accounts before = app.user().userList();
 
     AccountCreation modifiedUser = before.iterator().next();
 
@@ -48,14 +47,11 @@ public class UserModificationTest extends TestBase {
             .withAyear("1990").withBirthday("2000");
     app.user().modify(user);
     app.goTo().homePage();
-    Set<AccountCreation> after = app.user().userList();
-    Assert.assertEquals(before.size(), after.size());
-    before.remove(modifiedUser);
-    before.add(user);
-    //Comparator<? super AccountCreation> byId = (o1, o2) -> Integer.compare(o1.getId(), o2.getId());
-  //  before.sort(byId);
-  //  after.sort(byId);
-    Assert.assertEquals(after, before);
+    Accounts after = app.user().userList();
+
+    assertThat(before.size(), equalTo(after.size()));
+
+    assertThat(after, equalTo(before.without(modifiedUser).withAdded(modifiedUser)));
 
 
   }

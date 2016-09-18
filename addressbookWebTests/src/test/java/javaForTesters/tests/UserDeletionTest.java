@@ -1,12 +1,12 @@
 package javaForTesters.tests;
 
 import javaForTesters.model.AccountCreation;
-import org.testng.Assert;
+import javaForTesters.model.Accounts;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.List;
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Created by Антон on 23.08.2016.
@@ -30,17 +30,17 @@ public class UserDeletionTest extends TestBase {
   }
   @Test
   public void userDeletionTest() {
-     Set<AccountCreation> before = app.user().userList();
+     Accounts before = app.user().userList();
     AccountCreation deletedUser = before.iterator().next();
 
     app.user().delete(deletedUser);
     app.goTo().homePage();
-    Set<AccountCreation> after = app.user().userList();
-    Assert.assertEquals(before.size()-1, after.size());
+    Accounts  after = app.user().userList();
+   assertThat(before.size()-1, equalTo(after.size()));
 
 
-    before.remove(deletedUser);
-    Assert.assertEquals(before, after);
+    assertThat(after, equalTo(before.without(deletedUser)));
+
 
   }
 

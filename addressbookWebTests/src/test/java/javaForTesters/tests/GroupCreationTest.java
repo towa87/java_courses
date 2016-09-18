@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
 
 public class GroupCreationTest extends TestBase {
 
@@ -20,9 +19,7 @@ public class GroupCreationTest extends TestBase {
     app.groups().create(group);
     app.groups().groupPage();
     Groups after = app.groups().all();
-    assertEquals(after.size(),equalTo(before.size() + 1));
-//group.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt());
-   // group.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+    assertThat(after.size(),equalTo(before.size() + 1));
 
 
     assertThat(after, equalTo(before.withAdded(group.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));

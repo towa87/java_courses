@@ -1,10 +1,11 @@
 package javaForTesters.tests;
 
 import javaForTesters.model.AccountCreation;
-import org.testng.Assert;
+import javaForTesters.model.Accounts;
 import org.testng.annotations.Test;
 
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class UserCreationTest extends TestBase {
 
@@ -12,7 +13,7 @@ public class UserCreationTest extends TestBase {
 
   public void testUserCreation() {
     app.goTo().homePage();
-    Set<AccountCreation> before = app.user().userList();
+    Accounts before = app.user().userList();
     app.goTo().creationUserPage();
     AccountCreation account = new AccountCreation().withName("Ivan")
             .withLastname1("Smit").withNick("ST123").withNick("User")
@@ -23,17 +24,11 @@ public class UserCreationTest extends TestBase {
             .withAyear("1990").withBirthday("2000").withGroup("test3");
     app.user().createUser(account, true);
     app.goTo().homePage();
-    Set<AccountCreation> after = app.user().userList();
-    Assert.assertEquals(after.size(), before.size() + 1);
-    account.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt());
-   /* account.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+    Accounts after = app.user().userList();
 
-   Comparator<? super AccountCreation> byId = (a1, a2) -> Integer.compare(a1.getId(), a2.getId());
-    before.sort(byId);
-    after.sort(byId);*/
-    before.add(account);
-    Assert.assertEquals(after, before);
+    assertThat(after.size(), equalTo(before.size() + 1));
 
+    assertThat(after, equalTo(before.withAdded(account.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
 
 }

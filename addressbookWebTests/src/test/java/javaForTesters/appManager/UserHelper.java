@@ -1,6 +1,7 @@
 package javaForTesters.appManager;
 
 import javaForTesters.model.AccountCreation;
+import javaForTesters.model.Accounts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -156,9 +157,9 @@ public class UserHelper extends HelperBase {
   }
 
 
-  public Set<AccountCreation> userList() {
+  public Accounts userList() {
 
-    Set<AccountCreation> users = new HashSet<>();
+    Accounts users = new Accounts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element: elements)
     {

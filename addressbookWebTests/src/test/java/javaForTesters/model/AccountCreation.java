@@ -18,6 +18,9 @@ public class AccountCreation {
   private String homepage;
   private  String birthday;
 
+ // public AccountCreation(Accounts accountCreations) {
+  //}
+
   public AccountCreation withAyear(String ayear) {
     this.ayear = ayear; return this;
   }

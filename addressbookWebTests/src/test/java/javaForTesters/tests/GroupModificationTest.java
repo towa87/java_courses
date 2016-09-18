@@ -2,15 +2,11 @@ package javaForTesters.tests;
 
 import javaForTesters.model.GroupData;
 import javaForTesters.model.Groups;
-import org.hamcrest.MatcherAssert;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Set;
-
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Created by Антон on 22.08.2016.
@@ -37,7 +33,8 @@ public void ensurePreconditions(){
 
     app.groups().modify(group);
     Groups after = app.groups().all();
-    Assert.assertEquals(before.size(), after.size());
+    assertThat(after.size(),equalTo(before.size()));
+
        assertThat(after,equalTo(before.without(modifiedGroup).withAdded(group)));
 
   }
