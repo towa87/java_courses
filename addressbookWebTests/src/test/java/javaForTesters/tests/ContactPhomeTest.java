@@ -34,6 +34,10 @@ public class ContactPhomeTest extends TestBase{
     assertThat(account.getTelephoneHome(), equalTo(cleaned(accountInforFromEditForm.getTelephoneHome())));
     assertThat(account.getWorkPhone(), equalTo(cleaned(accountInforFromEditForm.getWorkPhone())));
     assertThat(account.getMobilePhone(), equalTo(cleaned(accountInforFromEditForm.getMobilePhone())));
+    assertThat(account.getEmail(), equalTo(accountInforFromEditForm.getEmail()));
+    assertThat(account.getEmail2(), equalTo(accountInforFromEditForm.getEmail2()));
+    assertThat(account.getEmail3(), equalTo(accountInforFromEditForm.getEmail3()));
+    assertThat(account.getAddress(), equalTo(accountInforFromEditForm.getAddress()));
   }
     public String cleaned (String phone){
     return phone.replaceAll("\\s", "").replaceAll("[-()]", "");

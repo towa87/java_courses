@@ -22,7 +22,7 @@ public class UserHelper extends HelperBase {
 
   public void populationNewUserForm(AccountCreation accountCreation, boolean creation) {
     type(By.name("firstname"), accountCreation.getName());
-    type(By.name("lastname"), accountCreation.getLastname1());
+    type(By.name("lastname"), accountCreation.getLastname());
     type(By.name("nickname"), accountCreation.getNick());
     type(By.name("title"), accountCreation.getTitle());
     type(By.name("company"), accountCreation.getCompany());
@@ -30,10 +30,10 @@ public class UserHelper extends HelperBase {
     type(By.name("byear"), accountCreation.getBirthday());
     type(By.name("ayear"), accountCreation.getAyear());
     type(By.name("mobile"), accountCreation.getMobilePhone());
-   // type(By.name("work"), accountCreation.getMobilePhone2());
+   type(By.name("email2"), accountCreation.getEmail2());
     type(By.name("work"), accountCreation.getWorkPhone());
- //   type(By.name("work"), accountCreation.getWorkPhone3());
-    type(By.name("fax"), accountCreation.getWorkPhone2());
+   type(By.name("email3"), accountCreation.getEmail3());
+    type(By.name("address"), accountCreation.getAddress());
     type(By.name("email"), accountCreation.getEmail());
     type(By.name("homepage"), accountCreation.getHomepage());
     if (creation) {
@@ -139,9 +139,11 @@ if (accountsCache != null)
       String lastname = cells.get(1).getText();
 
       String firstname = cells.get(2).getText();
-
+      String address = cells.get(3).getText();
+      String[] emails = cells.get(4).getText().split("\n");
       String[] phones = cells.get(5).getText().split("\n");
-      accountsCache.add(new AccountCreation().withId(id).withName(firstname).withLastname1(lastname).withMobilePhone(phones[1]).withTelephoneHome(phones[0]).withWorkPhone(phones[2]));
+
+      accountsCache.add(new AccountCreation().withId(id).withName(firstname).withAddress(address).withLastname1(lastname).withMobilePhone(phones[1]).withTelephoneHome(phones[0]).withWorkPhone(phones[2]).withEmail(emails[0]).withEmail2(emails[1]).withEmail3(emails[2]));
     }
     return new Accounts(accountsCache);
   }
@@ -162,8 +164,14 @@ if (accountsCache != null)
     String home = wd.findElement(By.name("home")).getAttribute("value");
     String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
     String work = wd.findElement(By.name("work")).getAttribute("value");
-    //editUserButton();
+    String email = wd.findElement(By.name("email")).getAttribute("value");
+    String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+    String email3 = wd.findElement(By.name("email3")).getAttribute("value");
+    String address = wd.findElement(By.name("address")).getAttribute("value");
+
     wd.navigate().back();
-    return new AccountCreation().withId(account.getId()).withName(firstname).withLastname1(lastname).withMobilePhone(mobile).withTelephoneHome(home).withWorkPhone(work);
+    return new AccountCreation().withId(account.getId()).withName(firstname).withLastname1(lastname)
+            .withMobilePhone(mobile).withTelephoneHome(home).withWorkPhone(work).withEmail(email)
+            .withEmail2(email2).withEmail3(email3).withAddress(address);
   }
 }

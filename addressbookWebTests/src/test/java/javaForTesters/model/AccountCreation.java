@@ -8,12 +8,11 @@ public class AccountCreation {
   private  String title;
   private String company;
   private  String telephoneHome;
-  private  String telephoneHome2;
   private  String mobilePhone;
-  private  String mobilePhone2;
+  private  String address;
   private  String workPhone;
-  private  String workPhone2;
-  private  String workPhone3;
+  private  String email2;
+  private  String email3;
   private  String email;
   private String homepage;
   private  String birthday;
@@ -87,29 +86,23 @@ public class AccountCreation {
     this.company = company; return this;
   }
 
-  public AccountCreation withTitle(String title) {
-    this.title = title; return this;
+  public AccountCreation withAddress(String address) {
+    this.address = address; return this;
   }
 
-  public AccountCreation withTelephoneHome2(String telephoneHome2) {
-    this.telephoneHome2 = telephoneHome2; return this;
-  }
 
-  public AccountCreation withMobilePhone2(String mobilePhone2) {
-    this.mobilePhone2 = mobilePhone2; return this;
-  }
 
   public AccountCreation withWorkPhone(String workPhone) {
     this.workPhone = workPhone; return this;
   }
 
-  public AccountCreation withWorkPhone3(String workPhone3) {
-    this.workPhone3 = workPhone3;
+  public AccountCreation withEmail3(String email3) {
+    this.email3 = email3;
     return this;
   }
 
-  public AccountCreation withWorkPhone2(String workPhone2) {
-      this.workPhone2 = workPhone2;
+  public AccountCreation withEmail2(String email2) {
+      this.email2 = email2;
     return this;
   }
 
@@ -124,7 +117,7 @@ public class AccountCreation {
     return name;
   }
 
-  public String getLastname1() {
+  public String getLastname() {
     return lastname1;
   }
 
@@ -144,30 +137,28 @@ public class AccountCreation {
     return telephoneHome;
   }
 
-  public String getTelephoneHome2() {
-    return telephoneHome2;
+  public String getEmail2() {
+    return email2;
   }
 
   public String getMobilePhone() {
     return mobilePhone;
   }
 
-  public String getMobilePhone2() {
-    return mobilePhone2;
+  public String getEmail3() {
+    return email3;
   }
 
   public String getWorkPhone() {
     return workPhone;
   }
 
-  public String getWorkPhone2() {
-    return workPhone2;
-  }
 
-  public String getWorkPhone3() {
-    return workPhone3;
-  }
 
+
+  public String getAddress() {
+    return address;
+  }
   public String getEmail() {
     return email;
   }
