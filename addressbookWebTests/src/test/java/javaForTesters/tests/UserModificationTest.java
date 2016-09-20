@@ -40,10 +40,9 @@ public class UserModificationTest extends TestBase {
 
     AccountCreation user = new AccountCreation().withId(modifiedUser.getId()).withName("Ivan")
             .withLastname1("Smit").withNick("ST123").withNick("User")
-            .withCompany("Software").withTelephoneHome("+4704888822")
-            .withTelephoneHome2("+4704888822").withMobilePhone("+4704888821")
-            .withMobilePhone2("+4704888821").withWorkPhone("+4704888821").withWorkPhone2("+4704888827")
-            .withWorkPhone3("+4704888829").withEmail("test@test.com").withHomepage("localhost:8080/")
+            .withCompany("Software").withTelephoneHome("+474888822")
+            .withMobilePhone("+474888821").withWorkPhone("+474888821")
+            .withEmail("test@test.com").withHomepage("localhost:8080/")
             .withAyear("1990").withBirthday("2000");
     app.user().modify(user);
     app.goTo().homePage();

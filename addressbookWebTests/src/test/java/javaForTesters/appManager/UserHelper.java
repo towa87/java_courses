@@ -30,9 +30,9 @@ public class UserHelper extends HelperBase {
     type(By.name("byear"), accountCreation.getBirthday());
     type(By.name("ayear"), accountCreation.getAyear());
     type(By.name("mobile"), accountCreation.getMobilePhone());
-    type(By.name("work"), accountCreation.getMobilePhone2());
+   // type(By.name("work"), accountCreation.getMobilePhone2());
     type(By.name("work"), accountCreation.getWorkPhone());
-    type(By.name("work"), accountCreation.getWorkPhone3());
+ //   type(By.name("work"), accountCreation.getWorkPhone3());
     type(By.name("fax"), accountCreation.getWorkPhone2());
     type(By.name("email"), accountCreation.getEmail());
     type(By.name("homepage"), accountCreation.getHomepage());
@@ -134,18 +134,14 @@ if (accountsCache != null)
     for (WebElement element: elements)
     {
       List<WebElement> cells = element.findElements(By.tagName("td"));
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
 
       String lastname = cells.get(1).getText();
 
       String firstname = cells.get(2).getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      accountsCache.add(new AccountCreation().withId(id).withName("Ivan")
-              .withLastname1("Smit").withNick("ST123").withNick("User")
-              .withCompany("Software").withTelephoneHome("+4704888822")
-              .withTelephoneHome2("+4704888822").withMobilePhone("+4704888821")
-              .withMobilePhone2("+4704888821").withWorkPhone("+4704888821").withWorkPhone2("+4704888827")
-              .withWorkPhone3("+4704888829").withEmail("test@test.com").withHomepage("localhost:8080/")
-              .withAyear("1990").withBirthday("2000"));
+
+      String[] phones = cells.get(5).getText().split("\n");
+      accountsCache.add(new AccountCreation().withId(id).withName(firstname).withLastname1(lastname).withMobilePhone(phones[1]).withTelephoneHome(phones[0]).withWorkPhone(phones[2]));
     }
     return new Accounts(accountsCache);
   }
@@ -157,5 +153,17 @@ if (accountsCache != null)
 
   public int count(){
     return wd.findElements(By.name("selected[]")).size();
+  }
+
+  public AccountCreation infoFromEditForm(AccountCreation account) {
+    editUser(account.getId());
+    String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+    String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+    String home = wd.findElement(By.name("home")).getAttribute("value");
+    String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+    String work = wd.findElement(By.name("work")).getAttribute("value");
+    //editUserButton();
+    wd.navigate().back();
+    return new AccountCreation().withId(account.getId()).withName(firstname).withLastname1(lastname).withMobilePhone(mobile).withTelephoneHome(home).withWorkPhone(work);
   }
 }
