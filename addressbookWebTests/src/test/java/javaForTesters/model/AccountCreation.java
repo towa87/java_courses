@@ -101,11 +101,10 @@ public class AccountCreation {
     return this;
   }
 
-  public AccountCreation withEmail2(String email2) {
-      this.email2 = email2;
-    return this;
-  }
 
+  public AccountCreation withEmail2(String email2) {
+    this.email2 = email2;  return this;
+  }
   private String ayear;
   private String group;
 

@@ -20,9 +20,9 @@ public class UserModificationTest extends TestBase {
       app.goTo().creationUserPage();
       app.user().createUser(new AccountCreation().withName("Ivan")
               .withLastname1("Smit").withNick("ST123").withNick("User")
-              .withCompany("Software").withTelephoneHome("+4704888822")
-              .withEmail2("Test@test2.com").withMobilePhone("+4704888821")
-              .withEmail2("Test@test2.com").withWorkPhone("+4704888821").withAddress("St.Ivanova")
+              .withCompany("Software").withTelephoneHome("+474888822")
+              .withEmail2("test@test2.com").withMobilePhone("+474888821")
+              .withEmail3("test@test3.com").withWorkPhone("+474888821").withAddress("St.Ivanova")
               .withEmail("test@test.com").withHomepage("localhost:8080/")
               .withAyear("1990").withBirthday("2000").withGroup("test3"), true);
 
@@ -38,11 +38,11 @@ public class UserModificationTest extends TestBase {
 
     AccountCreation modifiedUser = before.iterator().next();
 
-    AccountCreation user = new AccountCreation().withName("Ivan")
+    AccountCreation user = new AccountCreation().withId(modifiedUser.getId()).withName("Ivan")
             .withLastname1("Smit").withNick("ST123").withNick("User")
-            .withCompany("Software").withTelephoneHome("+4704888822")
-            .withEmail2("Test@test2.com").withMobilePhone("+4704888821")
-            .withEmail2("Test@test2.com").withWorkPhone("+4704888821").withAddress("St.Ivanova")
+            .withCompany("Software").withTelephoneHome("+474888822")
+            .withEmail2("test@test2.com").withMobilePhone("+474888821")
+            .withEmail3("test@test3.com").withWorkPhone("+474888821").withAddress("St.Ivanova")
             .withEmail("test@test.com").withHomepage("localhost:8080/")
             .withAyear("1990").withBirthday("2000").withGroup("test3");
     app.user().modify(user);

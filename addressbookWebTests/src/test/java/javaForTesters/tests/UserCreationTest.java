@@ -18,8 +18,8 @@ public class UserCreationTest extends TestBase {
     AccountCreation account = new AccountCreation().withName("Ivan")
             .withLastname1("Smit").withNick("ST123").withNick("User")
             .withCompany("Software").withTelephoneHome("+4704888822")
-            .withEmail2("Test@test2.com").withMobilePhone("+4704888821")
-            .withEmail2("Test@test2.com").withWorkPhone("+4704888821").withAddress("St.Ivanova")
+            .withEmail2("test@test2.com").withMobilePhone("+4704888821")
+            .withEmail3("test@test3.com").withWorkPhone("+4704888821").withAddress("St.Ivanova")
             .withEmail("test@test.com").withHomepage("localhost:8080/")
             .withAyear("1990").withBirthday("2000").withGroup("test3");
     app.user().createUser(account, true);
