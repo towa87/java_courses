@@ -140,10 +140,11 @@ if (accountsCache != null)
 
       String firstname = cells.get(2).getText();
       String address = cells.get(3).getText();
-      String[] emails = cells.get(4).getText().split("\n");
-      String[] phones = cells.get(5).getText().split("\n");
+      String allEmails = cells.get(4).getText();
+      String allPhones = cells.get(5).getText();
 
-      accountsCache.add(new AccountCreation().withId(id).withName(firstname).withAddress(address).withLastname1(lastname).withMobilePhone(phones[1]).withTelephoneHome(phones[0]).withWorkPhone(phones[2]).withEmail(emails[0]).withEmail2(emails[1]).withEmail3(emails[2]));
+      accountsCache.add(new AccountCreation().withId(id).withName(firstname).withAddress(address).withLastname1(lastname)
+              .withAllPhone(allPhones).withAllEmails(allEmails));
     }
     return new Accounts(accountsCache);
   }

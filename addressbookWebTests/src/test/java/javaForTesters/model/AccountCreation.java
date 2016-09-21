@@ -7,13 +7,18 @@ public class AccountCreation {
   private  String nick;
   private  String title;
   private String company;
-  private  String telephoneHome;
+  private  String WorkPhone;
   private  String mobilePhone;
+  private String ayear;
+  private String group;
+  private  String telephoneHome;
+  private  String allPhone;
   private  String address;
   private  String workPhone;
+  private  String email;
   private  String email2;
   private  String email3;
-  private  String email;
+  private  String allEmails;
   private String homepage;
   private  String birthday;
 
@@ -59,12 +64,12 @@ public class AccountCreation {
   }
 
   public AccountCreation withEmail(String email) {
-    this.email = email;  return this;
+    this.email = email; return this;
+  }
+  public AccountCreation withMobilePhone(String mobilePhone) {
+    this.mobilePhone = mobilePhone; return this;
   }
 
-  public AccountCreation withMobilePhone(String mobilePhone) {
-    this.mobilePhone = mobilePhone;  return this;
-  }
 
   public AccountCreation withTelephoneHome(String telephoneHome) {
     this.telephoneHome = telephoneHome; return this;
@@ -90,6 +95,13 @@ public class AccountCreation {
     this.address = address; return this;
   }
 
+  public String getAllEmails() {
+    return allEmails;
+  }
+
+  public AccountCreation withAllEmails(String allEmails) {
+    this.allEmails = allEmails; return this;
+  }
 
 
   public AccountCreation withWorkPhone(String workPhone) {
@@ -105,11 +117,16 @@ public class AccountCreation {
   public AccountCreation withEmail2(String email2) {
     this.email2 = email2;  return this;
   }
-  private String ayear;
-  private String group;
 
 
 
+  public String getAllPhone() {
+    return allPhone;
+  }
+
+  public AccountCreation withAllPhone(String allPhone) {
+    this.allPhone = allPhone; return this;
+  }
 
 
   public String getName() {
@@ -191,5 +208,6 @@ public class AccountCreation {
             ", lastname1='" + lastname1 + '\'' +
             '}';
   }
+
 
 }

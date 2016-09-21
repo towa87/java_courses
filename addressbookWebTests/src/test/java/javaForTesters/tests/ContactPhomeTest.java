@@ -4,6 +4,10 @@ import javaForTesters.model.AccountCreation;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -31,15 +35,27 @@ public class ContactPhomeTest extends TestBase{
     app.goTo().homePage();
     AccountCreation account = app.user().userList().iterator().next();
     AccountCreation accountInforFromEditForm = app.user().infoFromEditForm(account);
-    assertThat(account.getTelephoneHome(), equalTo(cleaned(accountInforFromEditForm.getTelephoneHome())));
-    assertThat(account.getWorkPhone(), equalTo(cleaned(accountInforFromEditForm.getWorkPhone())));
-    assertThat(account.getMobilePhone(), equalTo(cleaned(accountInforFromEditForm.getMobilePhone())));
-    assertThat(account.getEmail(), equalTo(accountInforFromEditForm.getEmail()));
-    assertThat(account.getEmail2(), equalTo(accountInforFromEditForm.getEmail2()));
-    assertThat(account.getEmail3(), equalTo(accountInforFromEditForm.getEmail3()));
+    assertThat(account.getAllPhone(), equalTo(mergePhones(accountInforFromEditForm)));
+    assertThat(account.getAllEmails(), equalTo(mergeEmails(accountInforFromEditForm)));
+
     assertThat(account.getAddress(), equalTo(accountInforFromEditForm.getAddress()));
   }
-    public String cleaned (String phone){
+
+  private String mergeEmails(AccountCreation account) {
+    return Arrays.asList(account.getEmail(), account.getEmail2(), account.getEmail3())
+            .stream().filter((s) -> ! s.equals("") )
+            .collect(Collectors.joining("\n"));
+  }
+
+
+  private String  mergePhones(AccountCreation account) {
+    return Arrays.asList(account.getTelephoneHome(), account.getMobilePhone(), account.getWorkPhone())
+            .stream().filter((s) -> ! s.equals("")).map(ContactPhomeTest::cleaned)
+            .collect(Collectors.joining("\n"));
+
+  }
+
+  public static String cleaned (String phone){
     return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
 
   }
