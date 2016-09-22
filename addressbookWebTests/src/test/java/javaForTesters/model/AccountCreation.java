@@ -9,7 +9,7 @@ public class AccountCreation {
   private String company;
   private  String WorkPhone;
   private  String mobilePhone;
-  private String ayear;
+  private String ayear =null;
   private String group;
   private  String telephoneHome;
   private  String allPhone;
@@ -20,7 +20,7 @@ public class AccountCreation {
   private  String email3;
   private  String allEmails;
   private String homepage;
-  private  String birthday;
+  private  String birthday =null;
 
  // public AccountCreation(Accounts accountCreations) {
   //}

@@ -62,6 +62,45 @@ public class UserHelper extends HelperBase {
 
   }
 
+
+  public void populationNewUserForm(AccountCreation accountCreation) {
+    type(By.name("firstname"), accountCreation.getName());
+    type(By.name("lastname"), accountCreation.getLastname());
+    type(By.name("nickname"), accountCreation.getNick());
+    type(By.name("title"), accountCreation.getTitle());
+    type(By.name("company"), accountCreation.getCompany());
+    type(By.name("home"), accountCreation.getTelephoneHome());
+ //   type(By.name("byear"), accountCreation.getBirthday());
+   // type(By.name("ayear"), accountCreation.getAyear());
+    type(By.name("mobile"), accountCreation.getMobilePhone());
+    type(By.name("email2"), accountCreation.getEmail2());
+    type(By.name("work"), accountCreation.getWorkPhone());
+    type(By.name("email3"), accountCreation.getEmail3());
+    type(By.name("address"), accountCreation.getAddress());
+    type(By.name("email"), accountCreation.getEmail());
+    type(By.name("homepage"), accountCreation.getHomepage());
+
+    if (!wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[7]")).isSelected()) {
+      click(By.xpath("//div[@id='content']/form/select[1]//option[7]"));
+    }
+    if (!wd.findElement(By.xpath("//div[@id='content']/form/select[2]//option[8]")).isSelected()) {
+      click(By.xpath("//div[@id='content']/form/select[2]//option[8]"));
+    }
+
+    if (!wd.findElement(By.xpath("//div[@id='content']/form/select[3]//option[10]")).isSelected()) {
+      click(By.xpath("//div[@id='content']/form/select[1]//option[7]"));
+    }
+    if (!wd.findElement(By.xpath("//div[@id='content']/form/select[4]//option[8]")).isSelected()) {
+      click(By.xpath("//div[@id='content']/form/select[4]//option[8]"));
+    }
+
+    //if (!wd.findElement(By.xpath("//div[@id='content']/form/select[5]//option[3]")).isSelected()) {
+    //click(By.xpath("//div[@id='content']/form/select[5]//option[3]"));
+    //}
+
+  }
+
+
   private void Select(By locator) {
     wd.findElement(locator).isSelected();
   }
@@ -85,10 +124,10 @@ public class UserHelper extends HelperBase {
         {row.get(collumnForEditbutton).findElement(By.tagName("a")).click();
         return;}
     }
+  }
 
 
 
-    }
 
   public void editUserButton() {
     click(By.name("update"));
@@ -103,6 +142,12 @@ public class UserHelper extends HelperBase {
 
   public void createUser(AccountCreation accountCreation, boolean b) {
   populationNewUserForm(accountCreation, b);
+    submitCreationNewUserRecord();
+    accountsCache = null;
+
+  }
+  public void createUser(AccountCreation accountCreation) {
+    populationNewUserForm(accountCreation);
     submitCreationNewUserRecord();
     accountsCache = null;
 
@@ -175,4 +220,11 @@ if (accountsCache != null)
             .withMobilePhone(mobile).withTelephoneHome(home).withWorkPhone(work).withEmail(email)
             .withEmail2(email2).withEmail3(email3).withAddress(address);
   }
+
+  public String detailedUserData() {
+
+  accountsCache = new Accounts();
+  String details = wd.findElement(By.id("content")).getText();
+return details;
+}
 }

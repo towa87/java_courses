@@ -10,16 +10,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class UserCreationTest extends TestBase {
 
   @Test
-
   public void testUserCreation() {
     app.goTo().homePage();
     Accounts before = app.user().userList();
     app.goTo().creationUserPage();
     AccountCreation account = new AccountCreation().withName("Ivan")
             .withLastname1("Smit").withNick("ST123").withNick("User")
-            .withCompany("Software").withTelephoneHome("+4704888822")
-            .withEmail2("test@test2.com").withMobilePhone("+4704888821")
-            .withEmail3("test@test3.com").withWorkPhone("+4704888821").withAddress("St.Ivanova")
+            .withCompany("Software").withTelephoneHome("+474888822")
+            .withEmail2("test@test2.com").withMobilePhone("+474888821")
+            .withEmail3("test@test3.com").withWorkPhone("+474888821").withAddress("St.Ivanova")
             .withEmail("test@test.com").withHomepage("localhost:8080/")
             .withAyear("1990").withBirthday("2000").withGroup("test3");
     app.user().createUser(account, true);
@@ -31,6 +30,7 @@ public class UserCreationTest extends TestBase {
 
     assertThat(after, equalTo(before.withAdded(account.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
+  @Test
   public void testBadUserCreation() {
     app.goTo().homePage();
     Accounts before = app.user().userList();
