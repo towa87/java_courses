@@ -16,7 +16,7 @@ public class UserCreationTest extends TestBase {
     app.goTo().homePage();
     Accounts before = app.user().userList();
     app.goTo().creationUserPage();
-    File photo = new File("C:/Users/Антон/Downloads/Java-course/java_courses/addressbookWebTests/src/test/resources/test.png");
+    File photo = new File("addressbookWebTests/src/test/resources/test.png");
     AccountCreation account = new AccountCreation().withName("Ivan")
             .withLastname1("Smit").withNick("ST123").withNick("User")
             .withCompany("Software").withTelephoneHome("+474888822")
@@ -28,6 +28,9 @@ public class UserCreationTest extends TestBase {
     app.goTo().homePage();
     assertThat(app.user().count(), equalTo(before.size() + 1));
     Accounts after = app.user().userList();
+
+    //assertThat(after.size(), equalTo(before.size() + 1));
+
     assertThat(after, equalTo(before.withAdded(account.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
 
@@ -55,4 +58,10 @@ public class UserCreationTest extends TestBase {
   }
 
 
+
+  /*@Test
+public void testUserCreationa() {
+    File cur = new File(".");
+    System.out.println(cur.getAbsolutePath());
+}*/
 }
