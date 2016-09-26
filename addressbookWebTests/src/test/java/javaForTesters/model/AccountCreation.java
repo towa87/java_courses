@@ -1,5 +1,7 @@
 package javaForTesters.model;
 
+import java.io.File;
+
 public class AccountCreation {
   private int id = Integer.MAX_VALUE;
   private  String name;
@@ -22,32 +24,21 @@ public class AccountCreation {
   private String homepage;
   private  String birthday =null;
 
+  public File getPhoto() {
+    return photo;
+  }
+
+  public AccountCreation  withPhoto(File photo) {
+    this.photo = photo; return this;
+  }
+
+  private File photo;
+
  // public AccountCreation(Accounts accountCreations) {
   //}
 
   public AccountCreation withAyear(String ayear) {
     this.ayear = ayear; return this;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    AccountCreation that = (AccountCreation) o;
-
-    if (id != that.id) return false;
-    if (name != null ? !name.equals(that.name) : that.name != null) return false;
-    return lastname1 != null ? lastname1.equals(that.lastname1) : that.lastname1 == null;
-
-  }
-
-  @Override
-  public int hashCode() {
-    int result = id;
-    result = 31 * result + (name != null ? name.hashCode() : 0);
-    result = 31 * result + (lastname1 != null ? lastname1.hashCode() : 0);
-    return result;
   }
 
   public AccountCreation withGroup(String group) {

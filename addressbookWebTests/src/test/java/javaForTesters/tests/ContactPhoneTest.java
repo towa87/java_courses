@@ -4,7 +4,6 @@ import javaForTesters.model.AccountCreation;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -14,7 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * Created by Антон on 19.09.2016.
  */
-public class ContactPhomeTest extends TestBase{
+public class ContactPhoneTest extends TestBase{
   @BeforeMethod
   public void ensureUserIsExcist(){
     app.goTo().homePage();
@@ -50,7 +49,7 @@ public class ContactPhomeTest extends TestBase{
 
   private String  mergePhones(AccountCreation account) {
     return Arrays.asList(account.getTelephoneHome(), account.getMobilePhone(), account.getWorkPhone())
-            .stream().filter((s) -> ! s.equals("")).map(ContactPhomeTest::cleaned)
+            .stream().filter((s) -> ! s.equals("")).map(ContactPhoneTest::cleaned)
             .collect(Collectors.joining("\n"));
 
   }
