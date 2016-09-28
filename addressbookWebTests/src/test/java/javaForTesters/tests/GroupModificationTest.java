@@ -29,7 +29,7 @@ public void ensurePreconditions(){
 
     GroupData modifiedGroup = before.iterator().next();
     GroupData group = new GroupData().withId(modifiedGroup.getId())
-            .withName("testmodified3").setFooter("test5").withHeader("test6");
+            .withName("testmodified3").withFooter("test5").withHeader("test6");
 
     app.groups().modify(group);
     assertThat(app.groups().count(),equalTo(before.size()));

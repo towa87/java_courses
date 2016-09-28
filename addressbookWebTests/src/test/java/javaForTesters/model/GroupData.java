@@ -6,9 +6,6 @@ public class GroupData {
   private int id = Integer.MAX_VALUE;;
   private  String name;
   private  String header;
-
-
-
   private  String footer;
 
 
@@ -49,7 +46,7 @@ public class GroupData {
 
   public GroupData withId(int id) { this.id = id;
     return this;}
-  public GroupData setFooter(String footer) {
+  public GroupData withFooter(String footer) {
     this.footer = footer;
     return this;
   }
