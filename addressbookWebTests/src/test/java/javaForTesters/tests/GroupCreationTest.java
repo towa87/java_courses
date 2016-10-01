@@ -2,27 +2,39 @@ package javaForTesters.tests;
 
 import javaForTesters.model.GroupData;
 import javaForTesters.model.Groups;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTest extends TestBase {
-
-  @Test
-  public void testGroupCreation() {
+@DataProvider
+public Iterator<Object[]> validGroups(){
+  List<Object[]> list = new ArrayList<Object[]>();
+  list.add(new Object[] {new GroupData().withName("test1").withFooter("test1").withHeader("test1")});
+  list.add(new Object[] {new GroupData().withName("test2").withFooter("test2").withHeader("test2")});
+  list.add(new Object[] {new GroupData().withName("test3").withFooter("test3").withHeader("test3")});
+return list.iterator();
+}
+  @Test(dataProvider = "validGroups")
+  public void testGroupCreation(GroupData group) {
 
     app.groups().groupPage();
     Groups before = app.groups().all();
-
-   GroupData group = new GroupData().withName("test3");
+  // GroupData group = new GroupData().withName("test3");
     app.groups().create(group);
     app.groups().groupPage();
     assertThat(app.groups().count(),equalTo(before.size() + 1));
     Groups after = app.groups().all();
         assertThat(after, equalTo(before.withAdded(group.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));
   }
-  @Test
+  @Test(enabled = false)
   public void testBadGroupCreation() {
 
     app.groups().groupPage();
