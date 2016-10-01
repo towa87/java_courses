@@ -77,10 +77,25 @@ public class AccountDataGenerator {
   private static List<AccountCreation> generateAccounts(int count) {
     List<AccountCreation> accounts = new ArrayList<AccountCreation>();
     for (int i = 0; i < count; i++) {
+      File photo = new File("addressbookWebTests/src/test/resources/test.png");
       accounts.add(new AccountCreation().withName(String.format("test %s", i))
               .withLastname1(String.format("test %s", i)).withAddress(String.format("test %s", i))
               .withEmail(String.format("test%s@test.com", i)).withEmail2(String.format("test%s@test.com", i+1)).withEmail3(String.format("test%s@test.com", i+2))
-              .withTelephoneHome(String.format("99999999%s", i)).withWorkPhone(String.format("888888888%s", i)).withMobilePhone(String.format("666666663%s", i)));
+              .withTelephoneHome(String.format("99999999%s", i)).withWorkPhone(String.format("888888888%s", i)).withMobilePhone(String.format("666666663%s", i))
+              .withCompany("Software").withTelephoneHome("+474888822")
+              .withMobilePhone("+474888821")
+              .withWorkPhone("+474888821").withAddress("St.Ivanova")
+              .withHomepage("localhost:8080/")
+              .withAyear("1990").withBirthday("2000").withGroup("test3").withPhoto(photo));
+
+  /*   File photo = new File("addressbookWebTests/src/test/resources/test.png");
+    AccountCreation account = new AccountCreation().withName("Ivan")
+            .withLastname1("Smit").withNick("ST123")
+            .withCompany("Software").withTelephoneHome("+474888822")
+            .withMobilePhone("+474888821")
+            .withWorkPhone("+474888821").withAddress("St.Ivanova")
+            .withHomepage("localhost:8080/")
+            .withAyear("1990").withBirthday("2000").withPhoto(photo);*/
     }
     return accounts;}
 

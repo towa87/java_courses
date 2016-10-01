@@ -80,8 +80,11 @@ public class GroupDataGenerator {
   private static List<GroupData> generateGroups(int count) {
     List<GroupData> groups = new ArrayList<GroupData>();
     for (int i = 0; i < count; i++) {
+
       groups.add(new GroupData().withHeader(String.format("test %s", i))
               .withName(String.format("test %s", i)).withFooter(String.format("test %s", i)));
+
+
     }
   return groups;}
 

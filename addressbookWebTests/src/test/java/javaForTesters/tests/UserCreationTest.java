@@ -1,29 +1,54 @@
 package javaForTesters.tests;
 
+import com.thoughtworks.xstream.XStream;
 import javaForTesters.model.AccountCreation;
 import javaForTesters.model.Accounts;
+import javaForTesters.model.GroupData;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class UserCreationTest extends TestBase {
-
-  @Test
-  public void testUserCreation() {
+  @DataProvider
+  public Iterator<Object[]> validAccountsFromXml() throws IOException {
+    List<Object[]> list = new ArrayList<Object[]>();
+    BufferedReader reader = new BufferedReader(new FileReader(new File("addressbookWebTests/src/test/resources/accounts.xml")));
+    String xml = "";
+    String line = reader.readLine();
+    while (line != null)
+    {
+      xml+=line;
+      line = reader.readLine();
+    }
+    XStream xStream = new XStream();
+    xStream.processAnnotations(AccountCreation.class);
+    List<AccountCreation> accounts =(List<AccountCreation>) xStream.fromXML(xml);
+    return accounts.stream().map((g)->new Object[] {g}).collect(Collectors.toList()).iterator();
+  }
+  @Test(dataProvider = "validAccountsFromXml")
+  public void testUserCreation(AccountCreation account) {
     app.goTo().homePage();
     Accounts before = app.user().userList();
     app.goTo().creationUserPage();
-    File photo = new File("addressbookWebTests/src/test/resources/test.png");
-    AccountCreation account = new AccountCreation().withName("Ivan")
+   /*  File photo = new File("addressbookWebTests/src/test/resources/test.png");
+   AccountCreation account = new AccountCreation().withName("Ivan")
             .withLastname1("Smit").withNick("ST123").withNick("User")
             .withCompany("Software").withTelephoneHome("+474888822")
             .withEmail2("test@test2.com").withMobilePhone("+474888821")
             .withEmail3("test@test3.com").withWorkPhone("+474888821").withAddress("St.Ivanova")
             .withEmail("test@test.com").withHomepage("localhost:8080/")
-            .withAyear("1990").withBirthday("2000").withGroup("test3").withPhoto(photo);
+            .withAyear("1990").withBirthday("2000").withGroup("test3").withPhoto(photo); */
     app.user().createUser(account, true);
     app.goTo().homePage();
     assertThat(app.user().count(), equalTo(before.size() + 1));
