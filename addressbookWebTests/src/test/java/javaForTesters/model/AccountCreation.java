@@ -1,15 +1,19 @@
 package javaForTesters.model;
 
-import java.io.File;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
+import java.io.File;
+@XStreamAlias("AccountCreation")
 public class AccountCreation {
+  @XStreamOmitField
   private int id = Integer.MAX_VALUE;
   private  String name;
   private  String lastname1;
   private  String nick;
   private  String title;
   private String company;
-  private  String WorkPhone;
+//  private  String WorkPhone;
   private  String mobilePhone;
   private String ayear =null;
   private String group;

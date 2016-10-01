@@ -1,0 +1,35 @@
+<list>
+  <AccountCreation>
+    <name>test 0</name>
+    <lastname1>test 0</lastname1>
+    <mobilePhone>6666666630</mobilePhone>
+    <telephoneHome>999999990</telephoneHome>
+    <address>test 0</address>
+    <workPhone>8888888880</workPhone>
+    <email>test0@test.com</email>
+    <email2>test1@test.com</email2>
+    <email3>test2@test.com</email3>
+  </AccountCreation>
+  <AccountCreation>
+    <name>test 1</name>
+    <lastname1>test 1</lastname1>
+    <mobilePhone>6666666631</mobilePhone>
+    <telephoneHome>999999991</telephoneHome>
+    <address>test 1</address>
+    <workPhone>8888888881</workPhone>
+    <email>test1@test.com</email>
+    <email2>test2@test.com</email2>
+    <email3>test3@test.com</email3>
+  </AccountCreation>
+  <AccountCreation>
+    <name>test 2</name>
+    <lastname1>test 2</lastname1>
+    <mobilePhone>6666666632</mobilePhone>
+    <telephoneHome>999999992</telephoneHome>
+    <address>test 2</address>
+    <workPhone>8888888882</workPhone>
+    <email>test2@test.com</email>
+    <email2>test3@test.com</email2>
+    <email3>test4@test.com</email3>
+  </AccountCreation>
+</list>
