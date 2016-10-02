@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * Created by Антон on 21.08.2016.
  */
 public class ApplicationManager {
-  private final Properties properties;
+  //private final Properties properties;
     private String browser;
 
   WebDriver wd;
@@ -27,17 +27,17 @@ public class ApplicationManager {
   private UserHelper userHelper;
 
   public ApplicationManager(String browser)  {
-    properties = new Properties();
+   // properties = new Properties();
     this.browser = browser;
 
   }
 
 
   public void init() throws FileNotFoundException {
-    String target = System.getProperty("target", "local");
+   // String target = System.getProperty("target", "local");
 
    // properties.load(new FileReader( new File(String.format("scr/test/resources/$s.properties", target))));
-    //String browser = BrowserType.FIREFOX;
+   // String browser = BrowserType.FIREFOX;
     if (browser.equals(BrowserType.FIREFOX))
     {
     wd = new FirefoxDriver();}
