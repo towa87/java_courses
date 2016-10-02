@@ -1,18 +1,24 @@
 package javaForTesters.appManager;
 
+import com.sun.xml.internal.fastinfoset.sax.Properties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Антон on 21.08.2016.
  */
 public class ApplicationManager {
-  private String browser;
+  private final Properties properties;
+    private String browser;
+
   WebDriver wd;
 
   private NavigationHelper navigationHelper;
@@ -20,12 +26,17 @@ public class ApplicationManager {
   private SessionHelper sessionHelper;
   private UserHelper userHelper;
 
-  public ApplicationManager(String browser) {
+  public ApplicationManager(String browser)  {
+    properties = new Properties();
     this.browser = browser;
+
   }
 
 
-  public void init() {
+  public void init() throws FileNotFoundException {
+    String target = System.getProperty("target", "local");
+
+    properties.load(new FileReader( new File(String.format("scr/test/resources/$s.properties", target))));
     //String browser = BrowserType.FIREFOX;
     if (browser.equals(BrowserType.FIREFOX))
     {
@@ -35,12 +46,12 @@ public class ApplicationManager {
     if (browser.equals(BrowserType.IE))
     {wd = new InternetExplorerDriver();}
     wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    wd.get("http://localhost:8080/addressbook/birthdays.php");
+    wd.get(properties.getProperty("web.baseUrl"));
     groupsHelper = new GroupsHelper(wd);
     navigationHelper = new NavigationHelper(wd);
     sessionHelper = new SessionHelper(wd);
     userHelper = new UserHelper(wd);
-    sessionHelper.login("admin", "secret");
+    sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
   }
 
 

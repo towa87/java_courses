@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
 import javaForTesters.model.GroupData;
 import javaForTesters.model.Groups;
+import org.jboss.netty.logging.Slf4JLoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -19,6 +20,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTest extends TestBase {
+
 @DataProvider
 public Iterator<Object[]> validGroupsFromXml() throws IOException {
   List<Object[]> list = new ArrayList<Object[]>();
