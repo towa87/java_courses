@@ -5,7 +5,7 @@ import javaForTesters.model.AccountCreation;
 import javaForTesters.model.Accounts;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
+import java.util.Properties;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;

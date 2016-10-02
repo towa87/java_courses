@@ -12,6 +12,7 @@ package javaForTesters.generators;
         import java.io.Writer;
         import java.util.ArrayList;
         import java.util.List;
+  import java.util.Properties;
 /**
  * Created by Антон on 01.10.2016.
  */

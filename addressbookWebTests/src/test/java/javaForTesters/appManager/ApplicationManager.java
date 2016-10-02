@@ -1,12 +1,12 @@
 package javaForTesters.appManager;
 
-import com.sun.xml.internal.fastinfoset.sax.Properties;
+//import com.sun.xml.internal.fastinfoset.sax.Properties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
-
+import java.util.Properties;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -33,9 +33,8 @@ public class ApplicationManager {
   }
 
 
-  public void init() throws FileNotFoundException {
+  public void init()  {
    // String target = System.getProperty("target", "local");
-
    // properties.load(new FileReader( new File(String.format("scr/test/resources/$s.properties", target))));
    // String browser = BrowserType.FIREFOX;
     if (browser.equals(BrowserType.FIREFOX))
@@ -47,7 +46,7 @@ public class ApplicationManager {
     {wd = new InternetExplorerDriver();}
     wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     //wd.get(properties.getProperty("web.baseUrl"));
-    wd.get("http://localhost:8080/addressbook");
+    wd.get("http://localhost:8080/addressbook/birthdays.php");
     groupsHelper = new GroupsHelper(wd);
     navigationHelper = new NavigationHelper(wd);
     sessionHelper = new SessionHelper(wd);

@@ -2,8 +2,9 @@ package javaForTesters.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
-
+import java.util.Properties;
 import java.io.File;
+
 @XStreamAlias("AccountCreation")
 public class AccountCreation {
   @XStreamOmitField
@@ -27,6 +28,7 @@ public class AccountCreation {
   private  String allEmails;
   private String homepage;
   private  String birthday =null;
+
 
   public File getPhoto() {
     return photo;

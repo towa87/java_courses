@@ -1,5 +1,5 @@
 package javaForTesters.tests;
-
+import java.util.Properties;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;

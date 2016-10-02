@@ -4,7 +4,7 @@ import javaForTesters.model.AccountCreation;
 import javaForTesters.model.Accounts;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
+import java.util.Properties;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 

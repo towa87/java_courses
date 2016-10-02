@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.thoughtworks.xstream.XStream;
 import javaForTesters.model.GroupData;
-
+import java.util.Properties;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

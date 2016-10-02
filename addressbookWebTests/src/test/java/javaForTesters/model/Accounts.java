@@ -1,7 +1,7 @@
 package javaForTesters.model;
 
 import com.google.common.collect.ForwardingSet;
-
+import java.util.Properties;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;

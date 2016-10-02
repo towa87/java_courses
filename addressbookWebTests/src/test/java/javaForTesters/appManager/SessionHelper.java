@@ -2,7 +2,7 @@ package javaForTesters.appManager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
+import java.util.Properties;
 /**
  * Created by Антон on 21.08.2016.
  */
