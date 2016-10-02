@@ -36,7 +36,7 @@ public class ApplicationManager {
   public void init() throws FileNotFoundException {
     String target = System.getProperty("target", "local");
 
-    properties.load(new FileReader( new File(String.format("scr/test/resources/$s.properties", target))));
+   // properties.load(new FileReader( new File(String.format("scr/test/resources/$s.properties", target))));
     //String browser = BrowserType.FIREFOX;
     if (browser.equals(BrowserType.FIREFOX))
     {
@@ -46,12 +46,14 @@ public class ApplicationManager {
     if (browser.equals(BrowserType.IE))
     {wd = new InternetExplorerDriver();}
     wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    wd.get(properties.getProperty("web.baseUrl"));
+    //wd.get(properties.getProperty("web.baseUrl"));
+    wd.get("http://localhost:8080/addressbook");
     groupsHelper = new GroupsHelper(wd);
     navigationHelper = new NavigationHelper(wd);
     sessionHelper = new SessionHelper(wd);
     userHelper = new UserHelper(wd);
-    sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
+    sessionHelper.login("admin", "secret");
+    //sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
   }
 
 

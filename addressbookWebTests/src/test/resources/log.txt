@@ -1,9 +1,16 @@
-﻿> Compilation failed; see the compiler error output for details.
+﻿  1 error
 
 
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug
+option to get more log output.
+
+BUILD FAILED
+
+Total time: 3.828 secs
 
 C:\Users\Антон\Downloads\Java-course\java_courses\addressbookWebTests>gradlew te
-stContacts
+stGroup
 
 FAILURE: Build failed with an exception.
 
@@ -34,6 +41,222 @@ option to get more log output.
 
 BUILD FAILED
 
-Total time: 3.854 secs
+Total time: 3.61 secs
 
-C:\Users\Антон\Downloads\Java-course\java_courses\addressbookWebTests>^A^A^A
+C:\Users\Антон\Downloads\Java-course\java_courses\addressbookWebTests>gradlew te
+stGroups
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Build file 'C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTest
+s\build.gradle' line: 19
+
+* What went wrong:
+Could not compile build file 'C:\Users\└эЄюэ\Downloads\Java-course\java_courses\
+addressbookWebTests\build.gradle'.
+> startup failed:
+  build file 'C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTe
+sts\build.gradle': 19: Ambiguous expression could be a parameterless closure exp
+ression, an isolated open code block, or it may continue a previous statement;
+   solution: Add an explicit parameter list, e.g. {it -> ...}, or force it to be
+ treated as an open block by giving it a label, e.g. L:{...}, and also either re
+move the previous newline, or add an explicit semicolon ';' @ line 19, column 9.
+
+             {
+             ^
+
+  1 error
+
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug
+option to get more log output.
+
+BUILD FAILED
+
+Total time: 3.709 secs
+
+C:\Users\Антон\Downloads\Java-course\java_courses\addressbookWebTests>gradlew te
+stGroups
+:compileJava
+:processResources UP-TO-DATE
+:classes
+:compileTestJava
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\ContactDetailedInformationTest.java:51: error: illegal
+start of expression
+            .stream().filter((s) -> ! s.equals("") ).map(ContactDetailedInformat
+ionTest::cleaned)
+                                  ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\ContactDetailedInformationTest.java:51: error: ')' expe
+cted
+            .stream().filter((s) -> ! s.equals("") ).map(ContactDetailedInformat
+ionTest::cleaned)
+
+       ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\ContactDetailedInformationTest.java:51: error: illegal
+start of expression
+            .stream().filter((s) -> ! s.equals("") ).map(ContactDetailedInformat
+ionTest::cleaned)
+
+        ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\ContactDetailedInformationTest.java:51: error: ';' expe
+cted
+            .stream().filter((s) -> ! s.equals("") ).map(ContactDetailedInformat
+ionTest::cleaned)
+
+                ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\ContactPhoneTest.java:45: error: illegal start of expre
+ssion
+            .stream().filter((s) -> ! s.equals("") )
+                                  ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\ContactPhoneTest.java:52: error: illegal start of expre
+ssion
+            .stream().filter((s) -> ! s.equals("")).map(ContactPhoneTest::cleane
+d)
+                                  ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\ContactPhoneTest.java:52: error: ')' expected
+            .stream().filter((s) -> ! s.equals("")).map(ContactPhoneTest::cleane
+d)
+                                                                        ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\ContactPhoneTest.java:52: error: illegal start of expre
+ssion
+            .stream().filter((s) -> ! s.equals("")).map(ContactPhoneTest::cleane
+d)
+                                                                         ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\ContactPhoneTest.java:52: error: ';' expected
+            .stream().filter((s) -> ! s.equals("")).map(ContactPhoneTest::cleane
+d)
+
+ ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\GroupCreationTest.java:38: error: illegal start of expr
+ession
+return groups.stream().map((g)->new Object[] {g}).collect(Collectors.toList()).i
+terator();
+                               ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\GroupCreationTest.java:54: error: illegal start of expr
+ession
+
+
+C:\Users\Антон\Downloads\Java-course\java_courses\addressbookWebTests>gradlew te
+stContacts
+:compileJava UP-TO-DATE
+:processResources UP-TO-DATE
+:classes UP-TO-DATE
+:compileTestJava
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\ContactDetailedInformationTest.java:51: error: illegal
+start of expression
+            .stream().filter((s) -> ! s.equals("") ).map(ContactDetailedInformat
+ionTest::cleaned)
+                                  ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\ContactDetailedInformationTest.java:51: error: ')' expe
+cted
+            .stream().filter((s) -> ! s.equals("") ).map(ContactDetailedInformat
+ionTest::cleaned)
+
+       ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\ContactDetailedInformationTest.java:51: error: illegal
+start of expression
+            .stream().filter((s) -> ! s.equals("") ).map(ContactDetailedInformat
+ionTest::cleaned)
+
+        ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\ContactDetailedInformationTest.java:51: error: ';' expe
+cted
+            .stream().filter((s) -> ! s.equals("") ).map(ContactDetailedInformat
+ionTest::cleaned)
+
+                ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\ContactPhoneTest.java:45: error: illegal start of expre
+ssion
+            .stream().filter((s) -> ! s.equals("") )
+                                  ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\ContactPhoneTest.java:52: error: illegal start of expre
+ssion
+            .stream().filter((s) -> ! s.equals("")).map(ContactPhoneTest::cleane
+d)
+                                  ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\ContactPhoneTest.java:52: error: ')' expected
+            .stream().filter((s) -> ! s.equals("")).map(ContactPhoneTest::cleane
+d)
+                                                                        ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\ContactPhoneTest.java:52: error: illegal start of expre
+ssion
+            .stream().filter((s) -> ! s.equals("")).map(ContactPhoneTest::cleane
+d)
+                                                                         ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\ContactPhoneTest.java:52: error: ';' expected
+            .stream().filter((s) -> ! s.equals("")).map(ContactPhoneTest::cleane
+d)
+
+ ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\GroupCreationTest.java:38: error: illegal start of expr
+ession
+return groups.stream().map((g)->new Object[] {g}).collect(Collectors.toList()).i
+terator();
+                               ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\GroupCreationTest.java:54: error: illegal start of expr
+ession
+    return groups.stream().map((g)->new Object[] {g}).collect(Collectors.toList(
+)).iterator();
+                                   ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\GroupCreationTest.java:67: error: illegal start of expr
+ession
+        assertThat(after, equalTo(before.withAdded(group.withId(after.stream().m
+apToInt((g)->g.getId()).max().getAsInt()))));
+
+            ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\UserCreationTest.java:36: error: illegal start of expre
+ssion
+    return accounts.stream().map((g)->new Object[] {g}).collect(Collectors.toLis
+t()).iterator();
+                                     ^
+C:\Users\└эЄюэ\Downloads\Java-course\java_courses\addressbookWebTests\src\test\j
+ava\javaForTesters\tests\UserCreationTest.java:49: error: illegal start of expre
+ssion
+      assertThat(after, equalTo(before.withAdded(account.withId(after.stream().m
+apToInt((g) -> g.getId()).max().getAsInt()))));
+
+             ^
+14 errors
+:compileTestJava FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileTestJava'.
+> Compilation failed; see the compiler error output for details.
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug
+option to get more log output.
+
+BUILD FAILED
+
+Total time: 8.15 secs
+
+C:\Users\Антон\Downloads\Java-course\java_courses\addressbookWebTests>
