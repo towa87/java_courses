@@ -59,9 +59,9 @@ public class AccountDataGenerator {
   private void saveAsJson(List<AccountCreation> accounts, File file) throws IOException {
     Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
     String json = gson.toJson(accounts);
-    Writer writer = new FileWriter(file);
-    writer.write(json);
-    writer.close();
+    try(  Writer writer = new FileWriter(file)) {
+      writer.write(json);
+    }
   }
 
   private void saveAsXml(List<AccountCreation> accountCreations, File file) throws IOException {
@@ -69,9 +69,9 @@ public class AccountDataGenerator {
     xstream.processAnnotations(AccountCreation.class);
 
     String xml = xstream.toXML(accountCreations);
-    Writer writer = new FileWriter(file);
-    writer.write(xml);
-    writer.close();
+    try(  Writer writer = new FileWriter(file)) {
+      writer.write(xml);
+    }
   }
 
   private static List<AccountCreation> generateAccounts(int count) {
@@ -101,10 +101,10 @@ public class AccountDataGenerator {
 
   private static void saveAsCsv(List<AccountCreation> accounts, File file) throws IOException {
 
-    Writer writer = new FileWriter(file);
-    for (AccountCreation account: accounts) {
-      writer.write(String.format("%s;%s;%s\n", account.getName(), account.getLastname(), account.getAddress()));
+    try(  Writer writer = new FileWriter(file)) {
+      for (AccountCreation account : accounts) {
+        writer.write(String.format("%s;%s;%s\n", account.getName(), account.getLastname(), account.getAddress()));
+      }
     }
-    writer.close();
   }
 }

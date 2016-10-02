@@ -13,3 +13,7 @@ dependencies {
     compile 'com.solidfire.code.gson:gson-parent:2.6.2'
 
 }
+
+test{
+    useTestNG()
+}
