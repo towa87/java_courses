@@ -2,6 +2,7 @@ package javaForTesters.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 import java.util.Properties;
 import java.io.File;
 
@@ -9,67 +10,76 @@ import java.io.File;
 public class AccountCreation {
   @XStreamOmitField
   private int id = Integer.MAX_VALUE;
-  private  String name;
-  private  String lastname1;
-  private  String nick;
-  private  String title;
+  private String name;
+  private String lastname1;
+  private String nick;
+  private String title;
   private String company;
-//  private  String WorkPhone;
-  private  String mobilePhone;
-  private String ayear =null;
+  //  private  String WorkPhone;
+  private String mobilePhone;
+  private String ayear = null;
   private String group;
-  private  String telephoneHome;
-  private  String allPhone;
-  private  String address;
-  private  String workPhone;
-  private  String email;
-  private  String email2;
-  private  String email3;
-  private  String allEmails;
+  private String telephoneHome;
+  private String allPhone;
+  private String address;
+  private String workPhone;
+  private String email;
+  private String email2;
+  private String email3;
+  private String allEmails;
   private String homepage;
-  private  String birthday =null;
+  private String birthday = null;
 
 
   public File getPhoto() {
     return photo;
   }
 
-  public AccountCreation  withPhoto(File photo) {
-    this.photo = photo; return this;
+  public AccountCreation withPhoto(File photo) {
+    this.photo = photo;
+    return this;
   }
 
   private File photo;
 
- // public AccountCreation(Accounts accountCreations) {
+  // public AccountCreation(Accounts accountCreations) {
   //}
 
   public AccountCreation withAyear(String ayear) {
-    this.ayear = ayear; return this;
+    this.ayear = ayear;
+    return this;
   }
 
   public AccountCreation withGroup(String group) {
 
-    this.group = group; return this;
+    this.group = group;
+    return this;
   }
 
   public AccountCreation withBirthday(String birthday) {
-    this.birthday = birthday; return this;
+    this.birthday = birthday;
+    return this;
   }
 
   public AccountCreation withHomepage(String homepage) {
-    this.homepage = homepage; return this;
+    this.homepage = homepage;
+    return this;
   }
 
   public AccountCreation withEmail(String email) {
-    this.email = email; return this;
+    this.email = email;
+    return this;
   }
+
   public AccountCreation withMobilePhone(String mobilePhone) {
-    this.mobilePhone = mobilePhone; return this;
+    this.mobilePhone = mobilePhone;
+    return this;
   }
 
 
   public AccountCreation withTelephoneHome(String telephoneHome) {
-    this.telephoneHome = telephoneHome; return this;
+    this.telephoneHome = telephoneHome;
+    return this;
   }
 
   @Override
@@ -94,23 +104,28 @@ public class AccountCreation {
   }
 
   public AccountCreation withLastname1(String lastname1) {
-    this.lastname1 = lastname1; return this;
+    this.lastname1 = lastname1;
+    return this;
   }
 
   public AccountCreation withName(String name) {
-    this.name = name; return this;
+    this.name = name;
+    return this;
   }
 
   public AccountCreation withNick(String nick) {
-    this.nick = nick; return this;
+    this.nick = nick;
+    return this;
   }
 
   public AccountCreation withCompany(String company) {
-    this.company = company; return this;
+    this.company = company;
+    return this;
   }
 
   public AccountCreation withAddress(String address) {
-    this.address = address; return this;
+    this.address = address;
+    return this;
   }
 
   public String getAllEmails() {
@@ -118,12 +133,14 @@ public class AccountCreation {
   }
 
   public AccountCreation withAllEmails(String allEmails) {
-    this.allEmails = allEmails; return this;
+    this.allEmails = allEmails;
+    return this;
   }
 
 
   public AccountCreation withWorkPhone(String workPhone) {
-    this.workPhone = workPhone; return this;
+    this.workPhone = workPhone;
+    return this;
   }
 
   public AccountCreation withEmail3(String email3) {
@@ -133,9 +150,9 @@ public class AccountCreation {
 
 
   public AccountCreation withEmail2(String email2) {
-    this.email2 = email2;  return this;
+    this.email2 = email2;
+    return this;
   }
-
 
 
   public String getAllPhone() {
@@ -143,7 +160,8 @@ public class AccountCreation {
   }
 
   public AccountCreation withAllPhone(String allPhone) {
-    this.allPhone = allPhone; return this;
+    this.allPhone = allPhone;
+    return this;
   }
 
 
@@ -188,11 +206,10 @@ public class AccountCreation {
   }
 
 
-
-
   public String getAddress() {
     return address;
   }
+
   public String getEmail() {
     return email;
   }
@@ -208,14 +225,19 @@ public class AccountCreation {
   public String getAyear() {
     return ayear;
   }
+
   public String getGroup() {
     return group;
   }
+
   public int getId() {
     return id;
   }
 
-  public AccountCreation withId(int id) { this.id = id; return this; }
+  public AccountCreation withId(int id) {
+    this.id = id;
+    return this;
+  }
 
   @Override
   public String toString() {
