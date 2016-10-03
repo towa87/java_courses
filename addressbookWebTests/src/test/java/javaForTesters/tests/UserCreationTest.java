@@ -3,6 +3,8 @@ package javaForTesters.tests;
 import com.thoughtworks.xstream.XStream;
 import javaForTesters.model.AccountCreation;
 import javaForTesters.model.Accounts;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import java.util.Properties;
@@ -19,10 +21,13 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class UserCreationTest extends TestBase {
+
+
+
   @DataProvider
   public Iterator<Object[]> validAccountsFromXml() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
-    BufferedReader reader = new BufferedReader(new FileReader(new File("addressbookWebTests/src/test/resources/accounts.xml")));
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/accounts.xml")));
     String xml = "";
     String line = reader.readLine();
     while (line != null)
@@ -37,6 +42,7 @@ public class UserCreationTest extends TestBase {
   }
   @Test(dataProvider = "validAccountsFromXml")
   public void testUserCreation(AccountCreation account) {
+
     app.goTo().homePage();
     Accounts before = app.user().userList();
     app.goTo().creationUserPage();
@@ -47,6 +53,7 @@ public class UserCreationTest extends TestBase {
     Accounts after = app.user().userList();
 
       assertThat(after, equalTo(before.withAdded(account.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+
   }
 
   @Test(enabled = false)

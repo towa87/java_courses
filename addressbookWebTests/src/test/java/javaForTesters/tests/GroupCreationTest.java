@@ -6,6 +6,8 @@ import com.thoughtworks.xstream.XStream;
 import javaForTesters.model.GroupData;
 import javaForTesters.model.Groups;
 import org.jboss.netty.logging.Slf4JLoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -24,7 +26,7 @@ public class GroupCreationTest extends TestBase {
 @DataProvider
 public Iterator<Object[]> validGroupsFromXml() throws IOException {
   List<Object[]> list = new ArrayList<Object[]>();
-  BufferedReader reader = new BufferedReader(new FileReader(new File("addressbookWebTests/src/test/resources/groups.xml")));
+  BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.xml")));
   String xml = "";
   String line = reader.readLine();
   while (line != null)
@@ -40,7 +42,7 @@ return groups.stream().map((g)->new Object[] {g}).collect(Collectors.toList()).i
   @DataProvider
   public Iterator<Object[]> validGroupsFromJson() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
-    BufferedReader reader = new BufferedReader(new FileReader(new File("addressbookWebTests/src/test/resources/groups.json")));
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.json")));
     String json = "";
     String line = reader.readLine();
     while (line != null)
@@ -55,6 +57,7 @@ return groups.stream().map((g)->new Object[] {g}).collect(Collectors.toList()).i
   }
 
   @Test(dataProvider = "validGroupsFromJson")
+
   public void testGroupCreation(GroupData group) {
 
     app.groups().groupPage();
@@ -65,6 +68,7 @@ return groups.stream().map((g)->new Object[] {g}).collect(Collectors.toList()).i
     assertThat(app.groups().count(),equalTo(before.size() + 1));
     Groups after = app.groups().all();
         assertThat(after, equalTo(before.withAdded(group.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));
+
   }
   @Test(enabled = false)
   public void testBadGroupCreation() {
@@ -81,5 +85,6 @@ return groups.stream().map((g)->new Object[] {g}).collect(Collectors.toList()).i
 
 
     assertThat(after, equalTo(before));
+
   }
 }
