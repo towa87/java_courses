@@ -3,6 +3,7 @@ package javaForTesters.tests;
 import com.thoughtworks.xstream.XStream;
 import javaForTesters.model.AccountCreation;
 import javaForTesters.model.Accounts;
+import javaForTesters.model.Groups;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
@@ -61,6 +62,7 @@ public class UserCreationTest extends TestBase {
   @Test(enabled = false)
   public void testBadUserCreation() {
     app.goTo().homePage();
+    Groups groups = app.db().groups();
     Accounts before = app.db().accounts();
     app.goTo().creationUserPage();
     File photo = new File("src/test/resources/IMG_0012.PNG");
@@ -70,7 +72,8 @@ public class UserCreationTest extends TestBase {
             .withEmail2("Test@test2.com").withMobilePhone("+47888821")
             .withEmail3("Test@test3.com").withWorkPhone("+474888821").withAddress("St.Ivanova")
             .withEmail("test@test.com").withHomepage("localhost:8080/")
-            .withGroup("test3").withPhoto(photo);
+            .inGroup(groups.iterator().next())
+            .withPhoto(photo);
     app.user().createUser(account, true);
     app.goTo().homePage();
     assertThat(app.user().count(), equalTo(before.size()));

@@ -38,8 +38,10 @@ public class UserHelper extends HelperBase {
     type(By.name("homepage"), accountCreation.getHomepage());
    attach(By.name("photo"),accountCreation.getPhoto());
     if (creation) {
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(accountCreation.getGroup());
-      }
+      if(accountCreation.getGroups().size() >0 ){
+        Assert.assertTrue(accountCreation.getGroups().size() ==1 );
+       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(accountCreation.getGroups().iterator().next().getName());
+      }}
     else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }

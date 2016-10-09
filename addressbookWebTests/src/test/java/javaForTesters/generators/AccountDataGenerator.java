@@ -87,7 +87,9 @@ public class AccountDataGenerator {
               .withMobilePhone("+474888821")
               .withWorkPhone("+474888821").withAddress("St.Ivanova")
               .withHomepage("localhost:8080/")
-              .withAyear("1990").withBirthday("2000").withGroup("test3").withPhoto(photo));
+              .withAyear("1990").withBirthday("2000")
+             // .withGroup("test3")
+              .withPhoto(photo));
 
   /*   File photo = new File("addressbookWebTests/src/test/resources/test.png");
     AccountCreation account = new AccountCreation().withName("Ivan")

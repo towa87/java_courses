@@ -5,8 +5,11 @@ import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Properties;
 import java.io.File;
+import java.util.Set;
+
 @Entity
 @Table(name = "addressbook")
 @XStreamAlias("AccountCreation")
@@ -29,9 +32,8 @@ public class AccountCreation {
   private String mobilePhone;
   @Transient
   private String ayear = null;
-  @Transient
-  private String group;
-  @Column(name = "home")
+
+    @Column(name = "home")
   @Type(type = "text")
   private String telephoneHome;
   @Transient
@@ -57,6 +59,10 @@ public class AccountCreation {
   @Type(type = "text")
   private String photo;
 
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name ="group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
+
   public File getPhoto() {
     return new File (photo);
   }
@@ -76,11 +82,7 @@ public class AccountCreation {
     return this;
   }
 
-  public AccountCreation withGroup(String group) {
 
-    this.group = group;
-    return this;
-  }
 
   public AccountCreation withBirthday(String birthday) {
     this.birthday = birthday;
@@ -130,6 +132,10 @@ public class AccountCreation {
     if (birthday != null ? !birthday.equals(that.birthday) : that.birthday != null) return false;
     return photo != null ? photo.equals(that.photo) : that.photo == null;
 
+  }
+
+  public Groups getGroups() {
+    return new Groups(groups);
   }
 
   @Override
@@ -274,9 +280,7 @@ public class AccountCreation {
     return ayear;
   }
 
-  public String getGroup() {
-    return group;
-  }
+
 
   public int getId() {
     return id;
@@ -298,4 +302,8 @@ public class AccountCreation {
   }
 
 
+  public AccountCreation inGroup(GroupData group) {
+    groups.add(group);
+    return this;
+  }
 }

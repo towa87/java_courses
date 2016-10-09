@@ -40,10 +40,12 @@ public class HbConnectionAccountsTest {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     List<AccountCreation> result = session.createQuery( "from AccountCreation where deprecated = '0000-00-00' ").list();
-    for (AccountCreation contact : result) {
-      System.out.println(contact);
-    }
+
     session.getTransaction().commit();
     session.close();
+    for (AccountCreation contact : result) {
+      System.out.println(contact);
+      System.out.println(contact.getGroups());
+    }
   }
 }

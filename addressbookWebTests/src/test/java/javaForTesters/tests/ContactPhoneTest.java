@@ -25,7 +25,9 @@ public class ContactPhoneTest extends TestBase{
               .withCompany("Software").withTelephoneHome("+474888822")
               .withMobilePhone("+474888821").withWorkPhone("+474888821")
               .withEmail("test@test.com").withHomepage("localhost:8080/")
-              .withAyear("1990").withBirthday("2000").withGroup("test3"), true);
+              .withAyear("1990").withBirthday("2000")
+            //  .withGroup("test3")
+              , true);
       app.goTo().homePage();
     }
   }

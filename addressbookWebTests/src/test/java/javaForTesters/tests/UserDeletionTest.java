@@ -2,6 +2,7 @@ package javaForTesters.tests;
 
 import javaForTesters.model.AccountCreation;
 import javaForTesters.model.Accounts;
+import javaForTesters.model.Groups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -20,13 +21,15 @@ public class UserDeletionTest extends TestBase {
 
     if (app.db().accounts().size() == 0) {
       app.goTo().creationUserPage();
+      Groups groups = app.db().groups();
       app.user().createUser(new AccountCreation().withName("Ivan")
               .withLastname1("Smit").withNick("ST123").withNick("User")
               .withCompany("Software").withTelephoneHome("+474888822")
               .withEmail2("test@test2.com").withMobilePhone("+474888821")
               .withEmail3("test@test3.com").withWorkPhone("+474888821").withAddress("St.Ivanova")
               .withEmail("test@test.com").withHomepage("localhost:8080/").withPhoto(new File("src/test/resources/IMG_0012.PNG"))
-              .withAyear("1990").withBirthday("2000").withGroup("test3"), true);
+              .withAyear("1990").withBirthday("2000")
+                      .inGroup(groups.iterator().next()), true);
       app.goTo().homePage();
     }
   }
