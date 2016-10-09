@@ -27,6 +27,7 @@ public class ApplicationManager {
   private GroupsHelper groupsHelper;
   private SessionHelper sessionHelper;
   private UserHelper userHelper;
+  private DbHelper dbHelper;
 
   public ApplicationManager(String browser)  {
     properties = new Properties();
@@ -36,8 +37,10 @@ public class ApplicationManager {
 
 
   public void init() throws IOException {
+
     String target = System.getProperty("target", "local");
     properties.load(new FileReader( new File(String.format("src/test/resources/%s.properties", target))));
+    dbHelper = new DbHelper();
    // String browser = BrowserType.FIREFOX;
     if (browser.equals(BrowserType.FIREFOX))
     {
@@ -55,6 +58,7 @@ public class ApplicationManager {
     userHelper = new UserHelper(wd);
     // sessionHelper.login("admin", "secret");
     sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
+
   }
 
 
@@ -73,4 +77,6 @@ public class ApplicationManager {
   public UserHelper user() {
     return userHelper;
   }
+  public DbHelper db(){return dbHelper;}
+
 }

@@ -1,9 +1,9 @@
 package javaForTesters.model;
 
 import com.google.common.collect.ForwardingSet;
-import java.util.Properties;
-import java.util.HashSet;
-import java.util.Set;
+import sandbox.Collections;
+
+import java.util.*;
 
 /**
  * Created by Антон on 17.09.2016.
@@ -12,10 +12,12 @@ public class Groups extends ForwardingSet<GroupData> {
 
   private Set<GroupData> delegate;
 
+  public Groups(Collection<GroupData> groups) {
+    this.delegate = new HashSet<GroupData>(groups);
+  }
   public Groups(Groups groups) {
     this.delegate = new HashSet<GroupData>(groups.delegate);
   }
-
   public Groups() {
     this.delegate = new HashSet<GroupData>();
   }
