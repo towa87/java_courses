@@ -50,7 +50,7 @@ public class UserModificationTest extends TestBase {
     assertThat(before.size(), equalTo((app.user().count())));
 
     assertThat(after, equalTo(before.without(modifiedUser).withAdded(modifiedUser)));
-
+    verifyAccountListInUI();
 
   }
 

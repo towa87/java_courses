@@ -68,8 +68,11 @@ return groups.stream().map((g)->new Object[] {g}).collect(Collectors.toList()).i
     assertThat(app.groups().count(),equalTo(before.size() + 1));
     Groups after = app.db().groups();
         assertThat(after, equalTo(before.withAdded(group.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));
-
+verifyGroupListInUI();
   }
+
+
+
   @Test(enabled = false)
   public void testBadGroupCreation() {
 

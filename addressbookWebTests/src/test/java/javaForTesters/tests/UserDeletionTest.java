@@ -39,11 +39,8 @@ public class UserDeletionTest extends TestBase {
     app.goTo().homePage();
     assertThat(before.size()-1, equalTo(app.user().count()));
     Accounts  after = app.db().accounts();
-
-
-
-    assertThat(after, equalTo(before.without(deletedUser)));
-
+   assertThat(after, equalTo(before.without(deletedUser)));
+    verifyAccountListInUI();
 
   }
 

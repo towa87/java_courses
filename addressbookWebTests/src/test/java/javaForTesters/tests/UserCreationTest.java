@@ -53,8 +53,10 @@ public class UserCreationTest extends TestBase {
     Accounts after = app.user().userList();
 
       assertThat(after, equalTo(before.withAdded(account.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
-
+    verifyAccountListInUI();
   }
+
+
 
   @Test(enabled = false)
   public void testBadUserCreation() {
