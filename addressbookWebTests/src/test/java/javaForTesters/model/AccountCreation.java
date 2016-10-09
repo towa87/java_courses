@@ -2,45 +2,71 @@ package javaForTesters.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.util.Properties;
 import java.io.File;
-
+@Entity
+@Table(name = "addressbook")
 @XStreamAlias("AccountCreation")
 public class AccountCreation {
   @XStreamOmitField
+  @Id
+  @Column(name = "id")
   private int id = Integer.MAX_VALUE;
+  @Column(name = "firstname")
   private String name;
+  @Column(name = "lastname")
   private String lastname1;
+  @Column(name = "nickname")
   private String nick;
   private String title;
   private String company;
   //  private  String WorkPhone;
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String mobilePhone;
+  @Transient
   private String ayear = null;
+  @Transient
   private String group;
+  @Column(name = "home")
+  @Type(type = "text")
   private String telephoneHome;
+  @Transient
   private String allPhone;
+  @Transient
   private String address;
+  @Column(name = "work")
+  @Type(type = "text")
   private String workPhone;
+  @Transient
   private String email;
+  @Transient
   private String email2;
+  @Transient
   private String email3;
+  @Transient
   private String allEmails;
+  @Transient
   private String homepage;
+  @Transient
   private String birthday = null;
-
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
 
   public File getPhoto() {
-    return photo;
+    return new File (photo);
   }
 
   public AccountCreation withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
-  private File photo;
+
 
   // public AccountCreation(Accounts accountCreations) {
   //}
