@@ -1,5 +1,7 @@
 package javaForTesters.appManager;
 
+import javaForTesters.model.AccountCreation;
+import javaForTesters.model.Accounts;
 import javaForTesters.model.GroupData;
 import javaForTesters.model.Groups;
 import org.hibernate.Session;
@@ -34,4 +36,15 @@ public class DbHelper {
     return new Groups(result);
 
   }
-}
+  public Accounts accounts(){
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    List<AccountCreation> result = session.createQuery( "from AccountCreation where deprecated = '0000-00-00' ").list();
+    for (AccountCreation contact : result) {
+      System.out.println(contact);
+    }
+    session.getTransaction().commit();
+    session.close();
+    return new Accounts(result);
+  }
+  }

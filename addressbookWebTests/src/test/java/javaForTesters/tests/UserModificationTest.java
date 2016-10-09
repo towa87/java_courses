@@ -4,6 +4,8 @@ import javaForTesters.model.AccountCreation;
 import javaForTesters.model.Accounts;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.io.File;
 import java.util.Properties;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -14,19 +16,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class UserModificationTest extends TestBase {
   @BeforeMethod
   public void ensureUserIsExcist() {
-    app.goTo().homePage();
-
-    if (!app.user().isThereUser()) {
+    if (app.db().accounts().size() == 0) {
       app.goTo().creationUserPage();
       app.user().createUser(new AccountCreation().withName("Ivan")
               .withLastname1("Smit").withNick("ST123").withNick("User")
               .withCompany("Software").withTelephoneHome("+474888822")
               .withEmail2("test@test2.com").withMobilePhone("+474888821")
               .withEmail3("test@test3.com").withWorkPhone("+474888821").withAddress("St.Ivanova")
-              .withEmail("test@test.com").withHomepage("localhost:8080/")
+              .withEmail("test@test.com").withHomepage("localhost:8080/").withPhoto(new File("src/test/resources/IMG_0012.PNG"))
               .withAyear("1990").withBirthday("2000").withGroup("test3"), true);
-
-
               app.goTo().homePage();
     }
   }
@@ -34,7 +32,7 @@ public class UserModificationTest extends TestBase {
 
   @Test
   public void testModificationUser() {
-    Accounts before = app.user().userList();
+    Accounts before = app.db().accounts();
 
     AccountCreation modifiedUser = before.iterator().next();
 
@@ -44,10 +42,10 @@ public class UserModificationTest extends TestBase {
             .withEmail2("test@test2.com").withMobilePhone("+474888821")
             .withEmail3("test@test3.com").withWorkPhone("+474888821").withAddress("St.Ivanova")
             .withEmail("test@test.com").withHomepage("localhost:8080/")
-            .withAyear("1990").withBirthday("2000").withGroup("test3");
+            .withAyear("1990").withBirthday("2000").withPhoto(new File("src/test/resources/IMG_0012.PNG")).withGroup("test3");
     app.user().modify(user);
     app.goTo().homePage();
-    Accounts after = app.user().userList();
+    Accounts after = app.db().accounts();
 
     assertThat(before.size(), equalTo((app.user().count())));
 

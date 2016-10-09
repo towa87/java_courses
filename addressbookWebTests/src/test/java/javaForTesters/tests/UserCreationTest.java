@@ -59,7 +59,7 @@ public class UserCreationTest extends TestBase {
   @Test(enabled = false)
   public void testBadUserCreation() {
     app.goTo().homePage();
-    Accounts before = app.user().userList();
+    Accounts before = app.db().accounts();
     app.goTo().creationUserPage();
     File photo = new File("src/test/resources/IMG_0012.PNG");
     AccountCreation account = new AccountCreation().withName("Ivan'''")
@@ -72,7 +72,7 @@ public class UserCreationTest extends TestBase {
     app.user().createUser(account, true);
     app.goTo().homePage();
     assertThat(app.user().count(), equalTo(before.size()));
-    Accounts after = app.user().userList();
+    Accounts after = app.db().accounts();
 
     //assertThat(after.size(), equalTo(before.size() + 1));
 

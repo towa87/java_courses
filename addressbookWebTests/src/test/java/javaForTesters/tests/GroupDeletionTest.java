@@ -12,23 +12,22 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class GroupDeletionTest extends TestBase {
 
   @BeforeMethod
-  public void ensurePreconditions(){
-    app.groups().groupPage();
-    if (app.groups().all().size() == 0)
-    {
+  public void ensurePreconditions() {
+    if (app.db().groups().size() == 0) {
+      app.groups().groupPage();
       app.groups().create(new GroupData().withName("test3"));
     }
   }
+
   @Test
   public void testDeletion() {
-       Groups before = app.groups().all();
+       Groups before = app.db().groups();
+
     GroupData deletedGroup = before.iterator().next();
+    app.groups().groupPage();
         app.groups().delete(deletedGroup);
     assertThat(app.groups().count(),equalTo(before.size() - 1));
-    Groups after = app.groups().all();
-
-
-
+    Groups after = app.db().groups();
      MatcherAssert.assertThat(after, equalTo(before.without(deletedGroup)));
 
   }

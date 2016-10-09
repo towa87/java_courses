@@ -61,12 +61,12 @@ return groups.stream().map((g)->new Object[] {g}).collect(Collectors.toList()).i
   public void testGroupCreation(GroupData group) {
 
     app.groups().groupPage();
-    Groups before = app.groups().all();
+    Groups before = app.db().groups();
   // GroupData group = new GroupData().withName("test3");
     app.groups().create(group);
     app.groups().groupPage();
     assertThat(app.groups().count(),equalTo(before.size() + 1));
-    Groups after = app.groups().all();
+    Groups after = app.db().groups();
         assertThat(after, equalTo(before.withAdded(group.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));
 
   }
@@ -74,13 +74,13 @@ return groups.stream().map((g)->new Object[] {g}).collect(Collectors.toList()).i
   public void testBadGroupCreation() {
 
     app.groups().groupPage();
-    Groups before = app.groups().all();
+    Groups before =app.db().groups();
 
     GroupData group = new GroupData().withName("test3'");
     app.groups().create(group);
     app.groups().groupPage();
     assertThat(app.groups().count(),equalTo(before.size()));
-    Groups after = app.groups().all();
+    Groups after = app.db().groups();
 
 
 

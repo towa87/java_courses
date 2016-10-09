@@ -1,10 +1,8 @@
 package javaForTesters.model;
 
 import com.google.common.collect.ForwardingSet;
-import java.util.Properties;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
+
+import java.util.*;
 
 /**
  * Created by Антон on 17.09.2016.
@@ -14,6 +12,9 @@ public class Accounts extends ForwardingSet<AccountCreation> {
 
   public Accounts(Accounts accountCreations) {
     this.delegate = new LinkedHashSet<AccountCreation>(accountCreations.delegate());
+  }
+  public Accounts(Collection accountCreations) {
+    this.delegate = new LinkedHashSet<AccountCreation>(accountCreations);
   }
 
   public Accounts() {
