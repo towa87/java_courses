@@ -78,7 +78,7 @@ public class AccountDataGenerator {
   private static List<AccountCreation> generateAccounts(int count) {
     List<AccountCreation> accounts = new ArrayList<AccountCreation>();
     for (int i = 0; i < count; i++) {
-      File photo = new File("addressbookWebTests/src/test/resources/test.png");
+      File photo = new File("src/test/resources/test.png");
       accounts.add(new AccountCreation().withName(String.format("test %s", i))
               .withLastname1(String.format("test %s", i)).withAddress(String.format("test %s", i))
               .withEmail(String.format("test%s@test.com", i)).withEmail2(String.format("test%s@test.com", i+1)).withEmail3(String.format("test%s@test.com", i+2))

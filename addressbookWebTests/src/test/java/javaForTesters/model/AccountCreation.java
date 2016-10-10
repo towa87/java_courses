@@ -38,25 +38,123 @@ public class AccountCreation {
   private String telephoneHome;
   @Transient
   private String allPhone;
-  @Transient
+  @Column(name = "address")
+  @Type(type = "text")
   private String address;
   @Column(name = "work")
   @Type(type = "text")
   private String workPhone;
-  @Transient
+  @Column(name = "email")
+  @Type(type = "text")
   private String email;
-  @Transient
+  @Column(name = "email2")
+  @Type(type = "text")
   private String email2;
-  @Transient
+  @Column(name = "email3")
+  @Type(type = "text")
   private String email3;
   @Transient
   private String allEmails;
-  @Transient
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    AccountCreation that = (AccountCreation) o;
+
+    if (id != that.id) return false;
+    if (name != null ? !name.equals(that.name) : that.name != null) return false;
+    if (lastname1 != null ? !lastname1.equals(that.lastname1) : that.lastname1 != null) return false;
+    if (company != null ? !company.equals(that.company) : that.company != null) return false;
+    if (mobilePhone != null ? !mobilePhone.equals(that.mobilePhone) : that.mobilePhone != null) return false;
+    if (telephoneHome != null ? !telephoneHome.equals(that.telephoneHome) : that.telephoneHome != null) return false;
+    if (address != null ? !address.equals(that.address) : that.address != null) return false;
+    if (workPhone != null ? !workPhone.equals(that.workPhone) : that.workPhone != null) return false;
+    if (email != null ? !email.equals(that.email) : that.email != null) return false;
+    if (email2 != null ? !email2.equals(that.email2) : that.email2 != null) return false;
+    if (email3 != null ? !email3.equals(that.email3) : that.email3 != null) return false;
+    return homepage != null ? homepage.equals(that.homepage) : that.homepage == null;
+
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
+    result = 31 * result + (lastname1 != null ? lastname1.hashCode() : 0);
+    result = 31 * result + (company != null ? company.hashCode() : 0);
+    result = 31 * result + (mobilePhone != null ? mobilePhone.hashCode() : 0);
+    result = 31 * result + (telephoneHome != null ? telephoneHome.hashCode() : 0);
+    result = 31 * result + (address != null ? address.hashCode() : 0);
+    result = 31 * result + (workPhone != null ? workPhone.hashCode() : 0);
+    result = 31 * result + (email != null ? email.hashCode() : 0);
+    result = 31 * result + (email2 != null ? email2.hashCode() : 0);
+    result = 31 * result + (email3 != null ? email3.hashCode() : 0);
+    result = 31 * result + (homepage != null ? homepage.hashCode() : 0);
+    return result;
+  }
+
+  public void setId(int id) {
+
+    this.id = id;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getLastname1() {
+    return lastname1;
+  }
+
+  public void setLastname1(String lastname1) {
+    this.lastname1 = lastname1;
+  }
+
+  public void setCompany(String company) {
+    this.company = company;
+  }
+
+  public void setMobilePhone(String mobilePhone) {
+    this.mobilePhone = mobilePhone;
+  }
+
+  public void setTelephoneHome(String telephoneHome) {
+    this.telephoneHome = telephoneHome;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public void setWorkPhone(String workPhone) {
+    this.workPhone = workPhone;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public void setEmail2(String email2) {
+    this.email2 = email2;
+  }
+
+  public void setEmail3(String email3) {
+    this.email3 = email3;
+  }
+
+  public void setHomepage(String homepage) {
+    this.homepage = homepage;
+  }
+
+  @Column(name = "homepage")
+  @Type(type = "text")
+
   private String homepage;
   @Transient
   private String birthday = null;
-  @Column(name = "photo")
-  @Type(type = "text")
+  @Transient
   private String photo;
 
   @ManyToMany(fetch = FetchType.EAGER)
@@ -110,51 +208,8 @@ public class AccountCreation {
     return this;
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    AccountCreation that = (AccountCreation) o;
-
-    if (id != that.id) return false;
-    if (name != null ? !name.equals(that.name) : that.name != null) return false;
-    if (lastname1 != null ? !lastname1.equals(that.lastname1) : that.lastname1 != null) return false;
-    if (company != null ? !company.equals(that.company) : that.company != null) return false;
-    if (mobilePhone != null ? !mobilePhone.equals(that.mobilePhone) : that.mobilePhone != null) return false;
-    if (ayear != null ? !ayear.equals(that.ayear) : that.ayear != null) return false;
-    if (telephoneHome != null ? !telephoneHome.equals(that.telephoneHome) : that.telephoneHome != null) return false;
-    if (address != null ? !address.equals(that.address) : that.address != null) return false;
-    if (workPhone != null ? !workPhone.equals(that.workPhone) : that.workPhone != null) return false;
-    if (email != null ? !email.equals(that.email) : that.email != null) return false;
-    if (email2 != null ? !email2.equals(that.email2) : that.email2 != null) return false;
-    if (email3 != null ? !email3.equals(that.email3) : that.email3 != null) return false;
-    if (birthday != null ? !birthday.equals(that.birthday) : that.birthday != null) return false;
-    return photo != null ? photo.equals(that.photo) : that.photo == null;
-
-  }
-
   public Groups getGroups() {
     return new Groups(groups);
-  }
-
-  @Override
-  public int hashCode() {
-    int result = id;
-    result = 31 * result + (name != null ? name.hashCode() : 0);
-    result = 31 * result + (lastname1 != null ? lastname1.hashCode() : 0);
-    result = 31 * result + (company != null ? company.hashCode() : 0);
-    result = 31 * result + (mobilePhone != null ? mobilePhone.hashCode() : 0);
-    result = 31 * result + (ayear != null ? ayear.hashCode() : 0);
-    result = 31 * result + (telephoneHome != null ? telephoneHome.hashCode() : 0);
-    result = 31 * result + (address != null ? address.hashCode() : 0);
-    result = 31 * result + (workPhone != null ? workPhone.hashCode() : 0);
-    result = 31 * result + (email != null ? email.hashCode() : 0);
-    result = 31 * result + (email2 != null ? email2.hashCode() : 0);
-    result = 31 * result + (email3 != null ? email3.hashCode() : 0);
-    result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
-    result = 31 * result + (photo != null ? photo.hashCode() : 0);
-    return result;
   }
 
   public AccountCreation withLastname1(String lastname1) {
@@ -295,9 +350,18 @@ public class AccountCreation {
   public String toString() {
     return "AccountCreation{" +
             "id=" + id +
-
             ", name='" + name + '\'' +
             ", lastname1='" + lastname1 + '\'' +
+            ", company='" + company + '\'' +
+            ", mobilePhone='" + mobilePhone + '\'' +
+            ", telephoneHome='" + telephoneHome + '\'' +
+            ", address='" + address + '\'' +
+            ", workPhone='" + workPhone + '\'' +
+            ", email='" + email + '\'' +
+            ", email2='" + email2 + '\'' +
+            ", email3='" + email3 + '\'' +
+            ", homepage='" + homepage + '\'' +
+            ", photo='" + photo + '\'' +
             '}';
   }
 

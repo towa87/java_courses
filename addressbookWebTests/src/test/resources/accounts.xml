@@ -5,7 +5,6 @@
     <company>Software</company>
     <mobilePhone>+474888821</mobilePhone>
     <ayear>1990</ayear>
-    <group>test3</group>
     <telephoneHome>+474888822</telephoneHome>
     <address>St.Ivanova</address>
     <workPhone>+474888821</workPhone>
@@ -14,7 +13,8 @@
     <email3>test2@test.com</email3>
     <homepage>localhost:8080/</homepage>
     <birthday>2000</birthday>
-    <photo>addressbookWebTests\src\test\resources\test.png</photo>
+    <photo>src\test\resources\test.png</photo>
+    <groups/>
   </AccountCreation>
   <AccountCreation>
     <name>test 1</name>
@@ -22,7 +22,6 @@
     <company>Software</company>
     <mobilePhone>+474888821</mobilePhone>
     <ayear>1990</ayear>
-    <group>test3</group>
     <telephoneHome>+474888822</telephoneHome>
     <address>St.Ivanova</address>
     <workPhone>+474888821</workPhone>
@@ -31,23 +30,7 @@
     <email3>test3@test.com</email3>
     <homepage>localhost:8080/</homepage>
     <birthday>2000</birthday>
-    <photo>addressbookWebTests\src\test\resources\test.png</photo>
-  </AccountCreation>
-  <AccountCreation>
-    <name>test 2</name>
-    <lastname1>test 2</lastname1>
-    <company>Software</company>
-    <mobilePhone>+474888821</mobilePhone>
-    <ayear>1990</ayear>
-    <group>test3</group>
-    <telephoneHome>+474888822</telephoneHome>
-    <address>St.Ivanova</address>
-    <workPhone>+474888821</workPhone>
-    <email>test2@test.com</email>
-    <email2>test3@test.com</email2>
-    <email3>test4@test.com</email3>
-    <homepage>localhost:8080/</homepage>
-    <birthday>2000</birthday>
-    <photo>addressbookWebTests\src\test\resources\test.png</photo>
+    <photo>src\test\resources\test.png</photo>
+    <groups/>
   </AccountCreation>
 </list>

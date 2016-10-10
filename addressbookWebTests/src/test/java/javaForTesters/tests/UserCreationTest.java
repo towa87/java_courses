@@ -24,7 +24,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class UserCreationTest extends TestBase {
 
 
-
   @DataProvider
   public Iterator<Object[]> validAccountsFromXml() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
@@ -39,19 +38,19 @@ public class UserCreationTest extends TestBase {
     XStream xStream = new XStream();
     xStream.processAnnotations(AccountCreation.class);
     List<AccountCreation> accounts =(List<AccountCreation>) xStream.fromXML(xml);
-    return accounts.stream().map((g)->new Object[] {g}).collect(Collectors.toList()).iterator();
-  }
+    list = accounts.stream().map((g)->new Object[]{g}).collect(Collectors.toList());
+    return list.iterator();}
   @Test(dataProvider = "validAccountsFromXml")
   public void testUserCreation(AccountCreation account) {
 
     app.goTo().homePage();
-    Accounts before = app.user().userList();
+    Accounts before = app.db().accounts();
     app.goTo().creationUserPage();
 
     app.user().createUser(account, true);
     app.goTo().homePage();
     assertThat(app.user().count(), equalTo(before.size() + 1));
-    Accounts after = app.user().userList();
+    Accounts after = app.db().accounts();
 
       assertThat(after, equalTo(before.withAdded(account.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
     verifyAccountListInUI();
