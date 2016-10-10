@@ -230,4 +230,17 @@ if (accountsCache != null)
   String details = wd.findElement(By.id("content")).getText();
 return details;
 }
+
+  public void select(Integer idAccount, Integer idGroup) {
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for(int i = 0; i < elements.size(); i++) {
+      List<WebElement> row = elements.get(i).findElements(By.tagName("td"));
+      int value = Integer.parseInt(row.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      if (value == idAccount)
+      {row.get(0).findElement(By.tagName("input")).click();
+        wd.findElement(By.tagName("to_group")).findElement(By.cssSelector("option[value='" + idGroup + "']")).click();
+        wd.findElement(By.tagName("add")).click();
+        return;}
+    }
+  }
 }
