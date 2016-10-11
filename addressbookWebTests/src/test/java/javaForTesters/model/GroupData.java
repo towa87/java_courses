@@ -23,12 +23,15 @@ public class GroupData {
   @Column(name ="group_name")
   private  String name;
 
-  public Accounts getAccounts() {
+
+
+  @ManyToMany(mappedBy = "groups")
+    private Set<AccountCreation> accounts = new HashSet<AccountCreation>();
+  public Accounts getAccounts()
+  {
     return new Accounts(accounts);
   }
 
-  @ManyToMany(mappedBy = "groups")
-  private Set<AccountCreation> accounts = new HashSet<AccountCreation>();
 
   @Override
   public boolean equals(Object o) {

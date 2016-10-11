@@ -238,8 +238,8 @@ return details;
       int value = Integer.parseInt(row.get(0).findElement(By.tagName("input")).getAttribute("value"));
       if (value == idAccount)
       {row.get(0).findElement(By.tagName("input")).click();
-        wd.findElement(By.tagName("to_group")).findElement(By.cssSelector("option[value='" + idGroup + "']")).click();
-        wd.findElement(By.tagName("add")).click();
+        wd.findElement(By.name("to_group")).findElement(By.cssSelector("option[value='" + idGroup + "']")).click();
+      wd.findElement(By.name("add")).click();
         return;}
     }
   }

@@ -5,6 +5,8 @@ import javaForTesters.model.AccountCreation;
 import javaForTesters.model.Accounts;
 import javaForTesters.model.GroupData;
 import javaForTesters.model.Groups;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -25,7 +27,6 @@ import java.util.stream.Collectors;
 public class AddUserToGroupTest extends TestBase {
 
   @BeforeMethod
-
   public void ensureUserAndGroupIsExcist() {
     app.goTo().homePage();
 
@@ -39,23 +40,30 @@ public class AddUserToGroupTest extends TestBase {
               .withEmail("test@test.com").withHomepage("localhost:8080/").withPhoto(new File("src/test/resources/IMG_0012.PNG"))
               .withAyear("1990").withBirthday("2000"), true);
 
-
+    }
         if (app.db().groups().size() == 0) {
           app.groups().groupPage();
           app.groups().create(new GroupData().withName("test3"));
         }
-      }
+
     app.goTo().homePage();
     }
 
 
 @Test
 public void addUserToGroupTest(){
-  Accounts accounts = app.db().accounts();
-  AccountCreation account = accounts.iterator().next();
+  Accounts accountsBefore = app.db().accounts();
+  AccountCreation accountBefore = accountsBefore.iterator().next();
   Groups groups = app.db().groups();
   GroupData group = groups.iterator().next();
-  app.user().select(account.getId(), group.getId());
-
-}
-}
+  app.user().select(accountBefore.getId(), group.getId());
+  Accounts accountsAfter = app.db().accounts();
+  AccountCreation accountAfter = new AccountCreation();
+  for( AccountCreation g : accountsAfter){
+    if( g.getId()==accountBefore.getId()){
+      accountAfter = g;
+      break;
+    }
+     }
+  MatcherAssert.assertThat(accountAfter.getGroups(), CoreMatchers.equalTo(accountBefore.inGroup(group).getGroups()));
+}}

@@ -47,5 +47,6 @@ public class HbConnectionAccountsTest {
       System.out.println(contact);
       System.out.println(contact.getGroups());
     }
+
   }
 }

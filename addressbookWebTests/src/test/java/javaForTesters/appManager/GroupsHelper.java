@@ -111,4 +111,18 @@ public int count(){
     groupCache = null;
     groupPage();
   }
-}
+
+  public void deleteAccountFromGroup(GroupData modificationGroupId, int idOfAccountToDelete) {
+     wd.findElement(By.name("group")).findElement(By.cssSelector("option[value='"+ modificationGroupId.getId() +"']")).click();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for(int i = 0; i < elements.size(); i++) {
+      List<WebElement> row = elements.get(i).findElements(By.tagName("td"));
+      int value = Integer.parseInt(row.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      if (value == idOfAccountToDelete){
+        row.get(0).findElement(By.tagName("input")).click();
+        wd.findElement(By.name("remove")).click();
+      }
+      }
+    }
+  }
+

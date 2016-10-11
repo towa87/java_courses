@@ -28,8 +28,9 @@ public class DbHelper {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     List<GroupData> result = session.createQuery( "from GroupData" ).list();
-    for (GroupData group : result) {
-      System.out.println(group);
+   for (GroupData group : result) {
+      System.out.println("Group:" + group);
+      System.out.println("Account:" + group.getAccounts());
     }
     session.getTransaction().commit();
     session.close();
@@ -40,11 +41,14 @@ public class DbHelper {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     List<AccountCreation> result = session.createQuery( "from AccountCreation where deprecated = '0000-00-00' ").list();
-    for (AccountCreation contact : result) {
+    /*for (AccountCreation contact : result) {
       System.out.println(contact);
-    }
+      System.out.println(contact.getGroups());
+    }*/
     session.getTransaction().commit();
     session.close();
     return new Accounts(result);
   }
-  }
+
+
+}
