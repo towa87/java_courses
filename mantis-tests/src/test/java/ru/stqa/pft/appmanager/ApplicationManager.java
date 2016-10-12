@@ -18,11 +18,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class ApplicationManager {
   private final Properties properties;
-    private String browser;
-
   WebDriver wd;
-
-
+    private String browser;
 
   public ApplicationManager(String browser)  {
     properties = new Properties();
@@ -57,5 +54,11 @@ public class ApplicationManager {
     wd.quit();
   }
 
+public HttpSession newSession(){
+  return new HttpSession(this);
+}
 
+  public String getProperty(String key) {
+    return properties.getProperty(key);
+  }
 }
