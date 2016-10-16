@@ -50,10 +50,7 @@ public class HttpSession {
   public boolean isLoggedInAs(String username) throws IOException {
     HttpGet get = new HttpGet(app.getProperty("web.baseURl") + "/index.php");
     CloseableHttpResponse response = httpclient.execute(get);
-
     String body = getTextFrom(response);
-    System.out.println(body);
-
-    return body.contains(String.format("<span class=\"italic\">%s</span>", username));
+    return body.contains(String.format("<span id=\"logged-in-user\">%s</span>", username));
   }
 }
