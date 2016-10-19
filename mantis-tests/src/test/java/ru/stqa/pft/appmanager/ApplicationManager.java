@@ -21,13 +21,19 @@ public class ApplicationManager {
   private WebDriver wd;
     private String browser;
   private RegistrationHelper registrationHelper;
+  private FtpHelper ftp;
 
   public ApplicationManager(String browser)  {
     properties = new Properties();
     this.browser = browser;
 
   }
-
+public  FtpHelper ftp(){
+  if (ftp == null){
+    ftp = new FtpHelper(this);
+  }
+return ftp;
+}
 
   public void init() throws IOException {
 
